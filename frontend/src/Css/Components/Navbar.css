@@ -1,0 +1,41 @@
+.navbarForFlex{
+    display: flex;
+    height: 13vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+        z-index: 100;
+}
+
+
+.originalNavbar{
+    border: 3px solid purple;
+    /* position: relative; */
+    /* background-color: ; */
+    border-radius: 1.8ch;
+   height: 70%;
+   width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    /* glassmorphism effect*/
+    background: rgba(255, 255, 255, 0.12);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(2.6px);
+        -webkit-backdrop-filter: blur(2.6px);
+        border: 1px solid rgba(255, 255, 255, 1);
+}
+
+.listOfNavs{
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+}

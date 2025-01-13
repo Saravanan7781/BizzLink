@@ -1,0 +1,23 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  
+}
+
+.theRoot{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border: 5px solid gold; */
+}
+
+/* for app.jsx file*/
+
+.OGapp {
+    position: relative;
+    background-color: rgb(106, 137, 216);
+    width: 100%;
+    height: auto;
+}
