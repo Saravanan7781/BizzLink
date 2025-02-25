@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.dupProfileContainerLayer{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    background-color: #1c73d0;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 6%;
+    /* border: 1px solid red; */
+}
+
+
+.profileContainerLayer {
+    /* height: 100vh; */
+    border-top-left-radius: 2ch;
+    border-top-right-radius: 2ch;
+    /* margin-top: 10%; */
+    border: 3px solid black;
+    background-color: white;
+    opacity: 0;
+    scale: .8;
+    transform: translateY(-10%);
+    transition: ease-in-out all 1.05s;
+}
+
+.showProfileContainerLayer{
+    opacity: 1;
+    scale: 1;
+    /* margin-top: -4%; */
+    width: 75%;
+    height: auto;
+    transform: translateY(0);
+}
+
+.profileBiodata {
+    height: 36%;
+    padding: 20px;
+    /* border: 3px dashed red; */
+    display: flex;
+}
+
+.profileBiodataPicture {
+    height: 100%;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    /* clip-path: circle(); */
+    border-radius: 50%;
+    
+    /* border-right: 2px solid forestgreen; */
+}
+
+
+.profileBiodataPicture img {
+    /* min-height: 100%; */
+    height: 90%;
+    /* perspective: 100; */
+    width: 100%;
+    clip-path: circle();
+    background-size: contain;
+    /* background-position: center; */
+    overflow: hidden;
+    backface-visibility: hidden;
+    transition: transform 1s ease;
+}
+
+.profileBiodataPicture img:hover {
+    cursor: pointer;
+    transform: rotateY(360deg);
+}
+
+
+.profileBiodataInfo {
+    display: flex;
+    /* height: 100%; */
+    /* background-color: black; */
+    width: 60%;
+    /* align-items: stretch; */
+
+    flex-direction: column;
+}
+
+.profileBiodataUsername {
+    height: 40%;
+    /* width: 100%; */
+
+    display: flex;
+    align-items: center;
+    font-family: "Poppins", serif;
+    font-weight: 100;
+    font-style: normal;
+    /* justify-content: baseline; */
+    border-bottom: 3px solid black;
+    display: grid;
+    grid-template-columns: 40% 20%;
+    align-items: center;
+}
+
+.profileBiodataUsername button{
+    /* justify-self: center; */
+    width: 50%;
+    background-color: #0e82ff;
+    height: 35%;
+    transition: background-color 0.5s;
+    /* border: 1px solid black; */
+    border: none;
+    color: white;
+    border-radius: 1.2ch;
+}
+
+.profileBiodataUsername button:hover {
+    cursor: pointer;
+    background-color: #1c73d0;
+}
+
+.profileBiodataProfileCounts {
+    display: flex;
+    height: 60%;
+    /* border: 3px solid navajowhite; */
+}
+
+.profileBiodataProfileCountsInfo {
+    width: 34.333%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding-top: 2%;
+    font-family: "Poppins", serif;
+    /* font-weight: 100; */
+    font-style: normal;
+    /* justify-content: center; */
+}
+
+/* POSTS COMPONENT */
+.profilePosts {
+    height: 64%;
+    /* border: 3px dashed green; */
+}
+
+.profilePostPreview {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border: 3px solid black;
+}
+
+.profilePostsComponentUsed {
+    height: 100%;
+}

@@ -1,4 +1,4 @@
-import {React,useState} from 'react'
+import {React,useState,useEffect} from 'react'
 import '../../Css/Components/Posts/PostLayout.css'
 import sample from '../../assets/sample.png'
 // import   from "react";
@@ -7,6 +7,7 @@ import { BiSolidUpvote  } from "react-icons/bi";
 import { FaShare } from "react-icons/fa6";
 
 import { AiOutlineMessage } from "react-icons/ai";
+import UseScrollAnimation from '../../Hooks/UseScrollAnimation';
 
 
 /* temporary data structure:
@@ -32,13 +33,18 @@ function PostLayout({data}) {
     } else {
         setTimeout(() => setIsHovered(false), 10); // Match the transition duration (500ms)
     }
-};
+    };  
+    
+    UseScrollAnimation(); //scroll animation hook
+    
 
 
   return (
       <>
           <div className="outerLayout" onMouseEnter={() => changeStateOfInnerLayout(true)} onMouseLeave={ () =>changeStateOfInnerLayout(false)}>
-              
+              <div className="wholeLayerForAnimation">
+                  
+            
           <div className="innerLayout1">
               <div className="userDetails">
                     <img className="userProfile" src={ user_dp} alt="" />
@@ -96,7 +102,8 @@ function PostLayout({data}) {
                   <div className="footerOfTheContent">
                       <i>Uploaded on {time_and_date_posted}</i>
                   </div>
-                      </div>
+                  </div>
+                  </div>
           </div>
       </>
   )

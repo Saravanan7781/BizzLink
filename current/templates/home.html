@@ -1,0 +1,42 @@
+
+{% extends 'base.html' %}
+
+{% block title %}HOME PAGE{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/home/stylesheet.css">
+<script src="/static/home/script.js"></script>
+<script src="http://cdn.jsdelivr.net/npm/kute.js@2.1.2/dist/kute.min.js"></script>
+{% endblock %}
+
+{% block body %}
+<div class="bannar" id="bannar">
+    <img src="/static/home/logo-removebg-preview.png" alt="">
+    <h1>WELCOME, {{ username }}</h1>
+    <h2>Get your appointments from anywhere!!</h2>
+    <div class="bannar-button">
+        <button><a href="#down">Get started</a></button>
+        <button><a href="/book-now">Book appointment now!</a></button>
+    </div>
+</div>
+
+
+<div class="spacer1 layer1" >
+    <div class="section1-head">
+        <h1>Appointy can serve almost any industry segment</h1>
+        <p>Our appointment booking system is used to book a short meeting with your convinient doctors </p>
+    </div>
+</div>
+<section class="section1">
+    
+    <div class="section1-content" id="down">
+        <img height="400px" width="700px" src="/static/home/app_pic_2-removebg-preview.png">
+        
+    </div>
+
+</section>
+<div class="spacer2 layer2"></div>
+<section class="section2">
+
+</section>
+{% endblock %}

@@ -1,0 +1,299 @@
+{% extends 'base.html' %}
+
+{% block title %}BOOK NOW{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/book-now/stylesheet.css">
+<style>
+  /* Add your custom CSS styles here */
+  .Doctor-info {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  .Doctor-info img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+
+  .info {
+    flex: 1;
+  }
+
+  .info h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+  }
+
+  .info p {
+    margin: 5px 0;
+    color: #777;
+    font-size: 16px;
+  }
+
+  .row2 {
+    margin-top: 10px;
+  }
+
+  /* Style for active link */
+  .horz-nav a.active {
+    color: #ff5722;
+  }
+  
+
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 10px; /* Adding border-radius for curved borders */
+    width: 60%;
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  /* Additional styles for doctor details and button */
+  
+
+  .book-appointment-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  /* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal h2 {
+  margin-top: 0;
+}
+
+.modal form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.modal form input,
+.modal form select,
+.modal form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.modal form button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal form button:hover {
+  background-color: #0056b3;
+}
+
+.modal form label input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.modal form label a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+/* Additional styling for responsive design */
+@media (max-width: 600px) {
+  .modal-content {
+    width: 90%;
+  }
+}
+
+
+
+</style>
+
+{% endblock %}
+
+{% block body %}  
+<ul class="horz-nav">
+  <li><a href="/book-now/Cardiologist">Cardiologist</a></li>
+  <li><a href="/book-now/ENT">ENT</a></li>
+  <li><a href="/book-now/Neurologist">Neurologist</a></li>
+  <li><a href="/book-now/Dentist">Dentist</a></li>
+  <li><a href="/book-now/Orthologist">Orthologist</a></li>
+</ul>
+
+<div style="margin-left: 25%; padding: 1px 16px; height: 1000px; background: #f1f1f1">
+  <div class="Search-box">
+    <input type="text" name="search-box" placeholder="Search for city">
+  </div>
+  {% for doctor in approved_doctors %}
+  <div class="Doctor-info">
+    <div class="row1">
+      <img src="/static/book-now/logo.jpg" alt="pic">
+      <div class="info">
+        <h2>Doctor Name: {{ doctor[1] }}</a></h2>
+        
+        <p>Education: {{ doctor[7] }}</p> 
+        <p>Specialization: {{ doctor[6] }}</p>
+        <p>Hospital Name: {{ doctor[5] }}</p>
+        <p>Phone Number: {{ doctor[3] }}</p>
+        <p>Mail: {{ doctor[2] }}</p>
+        <p>City: {{ doctor[9] }}</p> 
+        <button class="book-appointment-button"  data-doctor-id="{{ doctor[0] }}" data-doctor-name="{{ doctor[1] }}" data-specialization="{{ doctor[6] }}">Book Appointment</button>
+
+      
+      </div>
+    </div>
+    <div class="row2">
+      <p>Address: {{ doctor[8] }}</p>
+    </div>
+  </div>
+  {% endfor %}
+
+  
+<!-- Modal -->
+<div id="appointmentModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Book an Appointment</h2>
+    <form action="/submit_appointment" method="post">
+      <!-- Patient Information -->
+      <label for="full_name">Full Name:</label>
+      <input type="text" id="full_name" name="full_name" required>
+
+      <label for="gender">Gender:</label>
+      <select id="gender" name="gender">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" name="dob" required>
+
+      <label for="contact_number">Contact Number:</label>
+      <input type="tel" id="contact_number" name="contact_number" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <!-- Medical Information -->
+      <label for="medical_issue">Short description of your Medical Issue:</label>
+      <textarea id="medical_issue" name="medical_issue" rows="4" required></textarea>
+
+      <!-- Appointment Details -->
+      <label for="appointment_date">Appointment Date:</label>
+      <input type="date" id="appointment_date" name="appointment_date" required>
+      <label for="appointment_time">Appointment Time:</label>
+      <input type="time" id="appointment_time" name="appointment_time" required>
+      <!-- Add fields for doctor's name or ID, specialization, etc. -->
+
+      
+      <input type="hidden" class="doctor-id" name="doctor_id" value="">
+ 
+      <input type="hidden" class="doctor-name" name="doctor_name" value="">
+      <input type="hidden" class="specialization" name="specialization" value="">
+
+      
+      
+     
+       
+      <button type="submit">Book Appointment</button>
+    </form>
+  </div>
+</div>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const modal = document.getElementById("appointmentModal");
+  const links = document.querySelectorAll(".book-appointment-button");
+  const closeBtn = document.querySelector(".close");
+
+  links.forEach(function (button) {
+    button.addEventListener("click", function (event) {
+      event.preventDefault();
+      const doctorId = button.getAttribute("data-doctor-id");
+      const doctorName = button.getAttribute("data-doctor-name"); // Get the doctor's name
+      const specialization = button.getAttribute("data-specialization"); // Get the specialization
+      const doctorIdInput = modal.querySelector(".doctor-id");
+      const doctorNameInput = modal.querySelector(".doctor-name"); // Target the correct input field
+      const specializationInput = modal.querySelector(".specialization"); // Target the correct input field
+      
+      doctorIdInput.value = doctorId;
+      doctorNameInput.value = doctorName; // Set the selected doctor's name
+      specializationInput.value = specialization; // Set the selected doctor's specialization
+      
+      modal.style.display = "block";
+    });
+  });
+
+  closeBtn.addEventListener("click", function () {
+    modal.style.display = "none";
+  });
+});
+
+ 
+</script>
+{% endblock %}
