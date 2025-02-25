@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Booking Log{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/admin/admin-dashboard-style.css">
+
+{% endblock %}
+
+{% block body %}
+<h1 style="margin-top: 10vh;">Your Booking Log, {{ username }}</h1>
+
+{% if booking_log %}
+  <h2 class="title">Your Booking Requests:</h2>
+  <table>
+    <tr>
+      <th>Appointment Date</th>
+      <th>Appointment Time</th>
+      <th>Medical Issue</th>
+      <th>Doctor Name</th>
+      <th>Specialization</th>
+      <th>Hospital</th>
+      <th>Booked at</th>
+      <th>Status</th>
+    </tr>
+    {% for log_entry in booking_log %}
+    <tr>
+      <td>{{ log_entry[7] }}</td>
+      <td>{{ log_entry[8] }}</td>
+      <td>{{ log_entry[6] }}</td>
+      <td>{{ log_entry[10] }}</td>
+      <td>{{ log_entry[11] }}</td>
+      <td>{{ log_entry[16] }}</td>
+      <td>{{ log_entry[12] }}</td>
+      <td>{{ log_entry[14] }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% else %}
+  <p>No booking requests in your log.</p>
+{% endif %}
+
+{% endblock %}

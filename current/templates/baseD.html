@@ -1,0 +1,55 @@
+<!--baseD.html-->
+
+<html>
+    <head>
+        <title>{% block title  %}DEFAULT{% endblock %}</title>
+        <link rel="stylesheet" href="/static/base/stylesheet.css">
+        <link rel="shortcut icon" href="/static/base/logo-1.ico">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        {% block head %}
+        {% endblock %}
+    </head>
+
+    <body>
+        <div class="navbar" id="navbar">
+            <nav>
+                <ul>
+                    <li><a href="/home"><img src="/static/home/logo 1.jpg" class="nav-logo"></a></li>
+                    <li><a href="{{ url_for('doctor_home') }}"><b>HOME</b></a></li>
+                    <li><a href="{{ url_for('approved_appointments') }}">View Approved Appointments</a></li>
+
+
+                      
+
+                    
+                  <!--- <li><a href="/my-bookings"><b>MY BOOKINGS</b></a></li>-->     
+                    
+                    <div class="right-side" style="float: right;">
+                        {% if logined == 1 %}
+                            {% block user %}
+                               <!-- if user logined then user logo will be displayed-->
+                             <!--  <li class="welcome_user"><b>Welcome! {{ username }}</b></li>-->
+                               
+                               <li><a href="/logout"><b>LOGOUT</b></a></li>
+                            {% endblock %}
+                        {% else %}
+                            {% block signup_login %}
+                               <!-- if user did't login then login signup will be displayed-->
+                               <li><a  href="/login"><b>LOGIN</b></a></li>
+                               <li><a href="/sign-up"><b>SIGN-UP</b></a></li>
+                               <li><a href="/doctor-login"><b>DOCTOR</b></a></li>
+                               <li><a href="/admin-login"><b>ADMIN</a></li>
+                            {% endblock %}
+                        {% endif %}
+                        
+
+                    </div>
+                </ul>
+            
+            
+            </nav>
+        </div>
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>

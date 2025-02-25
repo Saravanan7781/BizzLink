@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.navbar{
+    height: 6vh;
+    width: 100%;
+    background: rgba(15, 119, 133, 0);
+    position: fixed;
+    margin: 0px;
+    top: 0;
+    left: 0;
+}
+.navbar ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.navbar li{
+    display: inline;
+    float: left;
+
+}
+.navbar a{
+    display: block;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: black;
+    font-size: 20px;
+    text-decoration: none;
+    border-right: solid black 1px;
+}

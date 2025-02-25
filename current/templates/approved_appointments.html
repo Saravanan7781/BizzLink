@@ -1,0 +1,39 @@
+{% extends 'baseD.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/admin/admin-dashboard-style.css">
+{% endblock%}
+
+
+{% block title %}Approved Appointments{% endblock %}
+
+{% block body %}
+<h1 class="title">Approved Appointments for {{ username }}</h1>
+
+{% if approved_requests %}
+  <table>
+    <tr>
+      <th>Patient Name</th>
+      <th>Gender</th>
+      <th>DOB</th>
+      <th>Appointment Date</th>
+      <th>Appointment Time</th>
+      <th>Medical Issue</th>
+      <th>Status</th>
+    </tr>
+    {% for request in approved_requests %}
+    <td>{{ request[0] }}</td>
+    <td>{{ request[1] }}</td>
+    <td>{{ request[2] }}</td>
+    <td>{{ request[6] }}</td>
+    <td>{{ request[7] }}</td>
+    <td>{{ request[5] }}</td>
+    <td>{{ request[13] }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% else %}
+  <p>No approved appointments at the moment.</p>
+{% endif %}
+
+{% endblock %}

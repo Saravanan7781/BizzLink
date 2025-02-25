@@ -1,0 +1,88 @@
+/* Update the background and box styling */
+body {
+  background-image: url(/static/sign_up/login_signup_page.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 100vh; /* Ensure the background covers the full viewport */
+  margin: 0; /* Remove default body margin */
+  display: flex; /* Use flexbox for centering */
+  justify-content: center; /* Horizontally center content */
+  align-items: center; /* Vertically center content */
+}
+
+
+.sign-up-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+  justify-content: center; /* Center content vertically */
+  /* Other styles */
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  padding: 20px;
+  width: 450px;
+  margin: 0 auto; /* Center horizontally */
+  margin-top: 15vh;
+}
+
+
+
+
+
+/* Update input fields */
+.sign-up-box input,
+.sign-up-box select {
+  /* Other styles */
+  font-size: 18px;
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid #6ed5c9;
+  justify-content: center;
+}
+
+/* Update button styles */
+.sign-up-box button {
+  /* Other styles */
+  background-color: #6ed5c9;
+  color: white;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.sign-up-box button:hover {
+  background-color: #52c3b8;
+}
+
+/* Update alert styles */
+.alert {
+  /* Other styles */
+  background: #f2dede;
+  border-left: 6px solid #d9534f;
+  opacity: 1;
+}
+
+.alert .fa-exclamation-circle {
+  /* Other styles */
+  color: #d9534f;
+}
+
+.alert .msg {
+  /* Other styles */
+  color: #d9534f;
+}
+
+.alert .close-btn {
+  /* Other styles */
+  background: #f2dede;
+  cursor: pointer;
+}
+
+.alert .close-btn:hover {
+  background: #e4c3c3;
+}
+
+.alert .close-btn .fas {
+  /* Other styles */
+  color: #d9534f;
+}

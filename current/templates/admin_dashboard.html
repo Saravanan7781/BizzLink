@@ -1,0 +1,47 @@
+{% extends 'baseA.html' %}
+
+{% block title %}
+Admin Dashboard
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/admin/admin-dashboard-style.css">
+
+{% endblock %}
+
+{% block body %}
+<h1 class="title">Pending Doctors</h1>
+<table>
+    <tr>
+        <th>Doctor-ID</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Phone number</th>
+        <th>Password</th>
+        <th>Hospital</th>
+        <th>Specialization</th>
+        <th>Education</th>
+        <th>Hospital's Address</th>
+        <th>City</th>
+        <th style="text-align: center;">Action</th>
+    </tr>
+    {% for doctor in pending_doctors %}
+    <tr>
+        <td>{{ doctor[0] }}</td>
+        <td>{{ doctor[1] }}</td>
+        <td>{{ doctor[2] }}</td>
+        <td>{{ doctor[3] }}</td>
+        <td>{{ doctor[4] }}</td>
+        <td>{{ doctor[5] }}</td>
+        <td>{{ doctor[6] }}</td>
+        <td>{{ doctor[7] }}</td>
+        <td>{{ doctor[8] }}</td>
+        <td>{{ doctor[9] }}</td>
+        <td class="button">
+            <a class="approve" href="{{ url_for('approve_doctor', doctor_id=doctor[0]) }}">Approve</a>
+            <a class="reject" href="{{ url_for('reject_doctor', doctor_id=doctor[0]) }}">Reject</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
