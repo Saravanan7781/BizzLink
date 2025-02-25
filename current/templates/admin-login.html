@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}LOGIN{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/login/stylesheet.css">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+{% endblock %}
+
+{% block body %}
+<div class="bannar">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    {% if message == "Green" %}
+                        <div class="alert hide green">
+                            <span class="msg green">Successfully registered. Please login</span>
+                        </div>
+                     
+                       
+                    {% else %}
+                        <div class="alert hide">
+                            <span class="msg">{{ message }}</span>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <script>
+
+        setTimeout(pop_up(), 4000);
+        function pop_up(){
+          $('.alert').addClass("show");
+          $('.alert').removeClass("hide");
+          $('.alert').addClass("showAlert");
+
+          setTimeout(function(){
+            $('.alert').removeClass("show");
+            $('.alert').addClass("hide");
+          },5000);
+        };
+
+        function close(){
+          $('.alert').removeClass("show");
+          $('.alert').addClass("hide");
+        };
+     </script>
+     <div class="login-box">
+        <form action="http://localhost:5000/admin-login" method="post">
+            <h1>LOGIN</h1>
+            <p><b>WELCOME BACK! login to continue</b></p>
+            <input type="text" name="username" placeholder="User name"><br>
+            <input type="password" name="password" placeholder="Password"><br>
+            <button type="submit">LOGIN</button>
+        </form>
+     </div>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+<!--doctor-home.html-->
+
+{% extends 'baseD.html' %}
+
+{% block title %}HOME PAGE{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/home/stylesheet.css">
+<script src="/static/home/script.js"></script>
+<script src="http://cdn.jsdelivr.net/npm/kute.js@2.1.2/dist/kute.min.js"></script>
+{% endblock %}
+
+{% block body %}
+<div class="bannar" id="bannar">
+    <img src="/static/home/logo.png" alt="">
+    <h1>Hi, Doc!</h1>
+    <h1>WELCOME {{ username }}</h1>
+  
+    <div class="bannar-button">
+        <button><a href="{{ url_for('doctor_dashboard', doctor_id=doctor_id) }}">View your dashboard</a></button>
+
+
+    </div>
+</div>
+
+
+
+</section>
+
+
+</section>
+{% endblock %}

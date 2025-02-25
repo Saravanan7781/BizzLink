@@ -1,0 +1,99 @@
+.dupContainerForAboutPage{
+    height: 250vh;
+    position: relative;
+    /* border: 3px solid blue; */
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.MainAboutPage{
+    display: flex;
+    position: sticky;
+    top: 0%;
+    /* justify-content: center; */
+    height: 100vh;   
+   
+    width: 80vw;
+    border: 1px solid black;
+}
+
+.aboutPageDescription{
+    width: 80%;
+    height: 60%;
+    padding: 1.2ch;
+    border-radius: 1.2ch;
+    border: 2px solid black;
+}
+
+.aboutPageDescription h1{
+    font-size: 2rem;
+    height: 15%;
+    font-family: poppins;
+    font-weight: 450;
+}
+
+.aboutPageDescription p{
+    
+    font-family: poppins;
+    font-weight: 380;
+}
+
+.leftHalfAboutPage{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid red;
+}
+
+.rightHalfAboutPage{
+    width: 50%;
+    border: 1px solid blue;
+}
+
+.descriptionWithSquareboxes{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+}
+
+.descriptionBox:nth-child(1){
+    background-color: rgb(190, 42, 42);
+}
+.descriptionBox:nth-child(2) {
+    background-color:  rgb(91, 118, 191);
+}
+.descriptionBox:nth-child(3) {
+    background-color: rgb(113, 220, 115);
+}
+
+
+.descriptionBox{
+    height: 60%;
+    transition: transform 0.5s ease-in-out;
+    width: 65%;
+    position: absolute;
+    border-radius: 1.3ch;
+    /* border: 3px solid green; */
+    padding: 1.2ch;
+}
+
+.descriptionBox h1{
+    display: flex;
+    align-items: center;
+    height: 16%;
+    font-size: 2rem;
+    font-family: poppins;
+    font-weight: 400;
+}
+
+.descriptionBox p{
+    font-family: poppins;
+    font-weight: 300;
+    font-size: .9rem;
+    /* color: whitesmoke; */
+}
