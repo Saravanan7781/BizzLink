@@ -12,26 +12,11 @@
     margin-bottom: 2%;
 }
 
-.wholeLayerForAnimation{
-    width: 100%;
-    display: flex;
-    transform: translateY(10px);
-    opacity: 0;
-    scale: 0.6;
-}
-
-.showTheAnimationForPost{
-    transform: translateY(0);
-    scale: 1;
-    opacity: 1;
-    transition: all 0.5s ease, opacity 0.5s ease;
-}
 
 .innerLayout1{
     height: 76vh;
     width: 100%;
-   
-    background-color: #0e82ff;
+    background-color: #796ad7;
     border-radius: 1.7ch;
     display: flex;
     flex-direction: column;

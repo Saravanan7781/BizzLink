@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+  
 }
 
 .theRoot{
@@ -9,10 +10,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* height: 100vh; */
-    /* width: 100vw; */
-    
-    /* overflow-y: scroll; */
     /* border: 5px solid gold; */
 }
 
@@ -20,7 +17,7 @@
 
 .OGapp {
     position: relative;
-    background-color: whitesmoke;
+    background-color: rgb(106, 137, 216);
     width: 100%;
     height: auto;
 }

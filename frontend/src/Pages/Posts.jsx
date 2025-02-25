@@ -2,7 +2,9 @@ import React from 'react'
 import PostLayout from '../Components/Posts/PostLayout'
 import '../Css/Pages/Posts.css'
 
-import post1 from '../assets/first.jpeg'
+import post1 from '../assets/user_post1.jpg'
+import post2 from '../assets/asta.jpg'
+import post3 from '../assets/liebe.png'
 
 function Posts() {
 
@@ -14,25 +16,25 @@ function Posts() {
       username: "saravanan_msd7",
         posted_image: post1,
       upvote_count: 72,
-          content_caption: "k",
+          content_caption: "Vella perukku vandhu nakku",
             content_description: blah,
               time_and_date_posted: "10/08/2005 ||  8:00pm"
   },
   {
-    user_dp: post1,
-      username: "shrishalini_",
-        posted_image: post1,
+    user_dp: post2,
+      username: "shrishalini_than_mass",
+        posted_image: post2,
     upvote_count: 100,
-           content_caption: "ii",
+           content_caption: "Naalu thenga enala mudila ponga",
             content_description: blah,
               time_and_date_posted: "31/08/2004 ||  5:00 am"
   },
   {
-    user_dp: post1,
+    user_dp: post3,
       username: "latha somasundaram",
-        posted_image: post1,
+        posted_image: post3,
     upvote_count: 289,
-           content_caption: "jj",
+           content_caption: "veri vandha sori edukkum",
             content_description: blah,
               time_and_date_posted: "10/08/2005 ||  8:00pm"
   },
@@ -41,7 +43,7 @@ function Posts() {
       username: "saravanan._.7",
         posted_image: post1,
     upvote_count: 1000000,
-           content_caption: "ji",
+           content_caption: "udamellam macham irundha kaaka pee potrum",
             content_description: blah,
               time_and_date_posted: "10/08/2005 ||  8:00pm"
   }
@@ -56,7 +58,7 @@ function Posts() {
       {
         list.map((datum) => {
           return (
-            <PostLayout data={datum}/>
+            <PostLayout data={datum } />
               )   
             })
        
