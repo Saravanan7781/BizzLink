@@ -5,7 +5,8 @@ import Search from './Pages/Search'
 import Profile from './Pages/Profile';
 import About from './Pages/About';
 import Login from './Pages/Login'
-
+import Register from './Components/Signup/Register'
+import EntrepreneurPitchForm from './Components/Posts/EntrepreneurPitchForm';
 function Maintaner() {
   return (
       <BrowserRouter>
@@ -15,6 +16,8 @@ function Maintaner() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/about" element={<About />} /> 
             <Route path="/login" element={ <Login/>}  />      
+            <Route path="/register" element={ <Register/>}  />      
+            <Route path="/pitch" element={ <EntrepreneurPitchForm/>}  />      
         </Routes>
      </BrowserRouter>
   )
