@@ -2,7 +2,9 @@ import React from 'react'
 import PostLayout from '../Components/Posts/PostLayout'
 import '../Css/Pages/Posts.css'
 
-import post1 from '../assets/first.jpeg'
+import post1 from '../assets/business.jpg'
+import post2 from '../assets/business2.jpg'
+import post3 from '../assets/business3.jpg'
 
 function Posts() {
 
@@ -19,18 +21,18 @@ function Posts() {
               time_and_date_posted: "10/08/2005 ||  8:00pm"
   },
   {
-    user_dp: post1,
+    user_dp: post2,
       username: "shrishalini_",
-        posted_image: post1,
+        posted_image: post2,
     upvote_count: 100,
            content_caption: "ii",
             content_description: blah,
               time_and_date_posted: "31/08/2004 ||  5:00 am"
   },
   {
-    user_dp: post1,
+    user_dp: post3,
       username: "latha somasundaram",
-        posted_image: post1,
+        posted_image: post3,
     upvote_count: 289,
            content_caption: "jj",
             content_description: blah,

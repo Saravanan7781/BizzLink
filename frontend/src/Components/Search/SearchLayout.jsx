@@ -4,9 +4,9 @@ import '../../Css/Components/Search/SearchLayout.css'
 import ShownPeople from './shownPeople' 
 
 
-import img1 from '../../assets/asta.jpg'
-import img2 from '../../assets/liebe.png'
-import img3 from '../../assets/user_post1.jpg'
+import img1 from '../../assets/business.jpg'
+import img2 from '../../assets/business2.jpg'
+import img3 from '../../assets/business3.jpg'
 
 function SearchLayout() {
 
