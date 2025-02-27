@@ -1,0 +1,52 @@
+/* Form Container */
+body{
+    background-color: aliceblue;
+    width: 100%;
+}
+form {
+    width: 100%; /* Increased width */
+    max-width: 600px; /* Ensures it doesn't get too large on big screens */
+    min-width: 350px; /* Ensures it's not too small on small screens */
+    margin: 40px auto;
+    padding: 25px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  h1{
+    color: #007bff;
+  }
+  /* Heading */
+  h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  /* Input Fields */
+  input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 18px;
+  }
+  
+  /* Button */
+  button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  

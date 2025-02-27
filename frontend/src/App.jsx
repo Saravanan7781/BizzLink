@@ -8,8 +8,9 @@ function App() {
   return (
     
     <div className="OGapp">
-      {/* <Navbar /> */}
-      <Posts />
+    <Navbar />
+    <Posts />
+    
     </div>
     
   )
