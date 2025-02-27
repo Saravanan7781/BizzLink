@@ -1,11 +1,38 @@
 import React from 'react';
 import '../Css/Pages/Login.css';
+import { useState } from 'react';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import axios from 'axios';
 
 function Login() {
+  
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const SignIn = async () => {
+    console.log("Normal sign in clicked");
+    let email = document.querySelector('input[type="email"]').value;
+    let password = document.querySelector('input[type="password"]').value;
+    if (!email || !password) {
+      console.log("Please fill all the fields");
+      return;
+    }
+
+    console.log("email: ", email);
+    console.log("password: ", password);
+    setUserData((prevState)=>({
+      ...prevState,
+      email: email,
+      password: password,
+    }));
+    console.log(userData);
+  }
+
   async function handleGoogleSuccess(response) {
     try {
+      // console.log(response.credential);
       const responseFromBackend = await axios.post('http://localhost:5000/api/user/google/login', {
         userData: response.credential, 
       });
@@ -16,7 +43,7 @@ function Login() {
     }
   }
 
-  // Handle Google Sign-In Failure
+  
   function handleGoogleFailure() {
     console.error("Some error occurred while signing in with Google");
   }
@@ -35,7 +62,7 @@ function Login() {
               <input type="password" placeholder="password" />
             </div>
 
-            <button className="normalSignUp">SignUp</button>
+            <button className="normalSignUp" onClick={SignIn}>SignUp</button>
             <p>or</p>
 
             <div className="signUpWithGoogle">
