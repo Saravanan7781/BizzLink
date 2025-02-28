@@ -1,34 +1,44 @@
 import React from 'react';
 import '../Css/Pages/Login.css';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import axios from 'axios';
-
+import Cookies from 'js-cookie'
+import { useNavigate } from 'react-router-dom';
 function Login() {
-  
-  const [userData, setUserData] = useState({
-    email: "",
-    password: "",
-  });
-
-  const SignIn = async () => {
-    console.log("Normal sign in clicked");
-    let email = document.querySelector('input[type="email"]').value;
-    let password = document.querySelector('input[type="password"]').value;
-    if (!email || !password) {
-      console.log("Please fill all the fields");
-      return;
+  const navigate = useNavigate();
+  const [userData, setUserData] = useState(
+    {
+      email: '',
+      password: ''
     }
+  );
 
-    console.log("email: ", email);
-    console.log("password: ", password);
-    setUserData((prevState)=>({
-      ...prevState,
-      email: email,
-      password: password,
+  const changeInput = (e) => {
+    const { name, value } = e.target;
+
+    setUserData((prevState) => ({
+        ...prevState,
+        [name]: value
     }));
-    console.log(userData);
   }
+
+ 
+  const SignIn = async () => {
+    console.log("Sending data", userData);
+    try {
+      const response = await axios.post('http://localhost:5000/api/user/login', userData);
+      console.log(response.data);
+      const data = response.data;
+      const { token } = data;
+      Cookies.set("user", token);
+      navigate('/posts');
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+  
 
   async function handleGoogleSuccess(response) {
     try {
@@ -57,9 +67,9 @@ function Login() {
             <p>Login to our website and start your journey</p>
 
             <div className="loginFormInputDetails">
-              <input type="text" placeholder="name" />
-              <input type="email" placeholder="email" />
-              <input type="password" placeholder="password" />
+              <input type="text" placeholder="name" name="name"  />
+              <input type="email" name="email" onChange={changeInput } placeholder="email"  />
+              <input type="password" name="password" placeholder="password"  onChange={changeInput }  />
             </div>
 
             <button className="normalSignUp" onClick={SignIn}>SignUp</button>

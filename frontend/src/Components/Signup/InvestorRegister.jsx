@@ -11,22 +11,22 @@ function InvestorRegister() {
 
   return (
     <div className="register-container">
-      <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
-        <h2>Investor Registration</h2>
+      <form className="investor-register-form" onSubmit={handleSubmit(onSubmit)}>
+        <h2 className="investorRegisterHeading">Investor Registration</h2>
 
-        <input {...register("username")} placeholder="Username" required />
-        <input {...register("password")} type="password" placeholder="Password" required />
-        <input {...register("email")} type="email" placeholder="Email" required />
-        <input {...register("linkedin")} type="url" placeholder="LinkedIn Profile URL" required />
-        <input {...register("phone")} type="tel" placeholder="Phone Number" required />
+        <input className="investorRegisterInputs" {...register("username")} placeholder="Username" required />
+        <input className="investorRegisterInputs" {...register("password")} type="password" placeholder="Password" required />
+        <input className="investorRegisterInputs" {...register("email")} type="email" placeholder="Email" required />
+        <input className="investorRegisterInputs" {...register("linkedin")} type="url" placeholder="LinkedIn Profile URL" required />
+        <input className="investorRegisterInputs" {...register("phone")} type="tel" placeholder="Phone Number" required />
 
         {/* Accredited Investor Confirmation */}
         <label className="checkbox-label">
-          <input type="checkbox" {...register("accreditedInvestor")} required />
+          <input className="investorRegisterInputs" type="checkbox" {...register("accreditedInvestor")} required />
           I confirm that I am an Accredited Investor as per SEBI regulations.
         </label>
 
-        <button type="submit">Register</button>
+        <button type="submit" className="investorRegisterButton">Register</button>
       </form>
     </div>
   );

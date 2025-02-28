@@ -1,9 +1,5 @@
-/* Form Container */
-body{
-    background-color: aliceblue;
-    width: 100%;
-}
-form {
+
+.registerForm {
     width: 100%; /* Increased width */
     max-width: 600px; /* Ensures it doesn't get too large on big screens */
     min-width: 350px; /* Ensures it's not too small on small screens */
@@ -16,17 +12,15 @@ form {
     flex-direction: column;
     gap: 15px;
   }
-  h1{
-    color: #007bff;
-  }
+  
   /* Heading */
-  h2 {
+    .entreRegisterHeading {
     text-align: center;
     color: #333;
   }
   
   /* Input Fields */
-  input {
+  .entreRegisterInputFields {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -35,7 +29,7 @@ form {
   }
   
   /* Button */
-  button {
+    .entreRegisterSubmit {
     background-color: #007bff;
     color: white;
     padding: 12px;
@@ -46,7 +40,7 @@ form {
     transition: 0.3s;
   }
   
-  button:hover {
+  .entreRegisterSubmit:hover {
     background-color: #0056b3;
   }
   
