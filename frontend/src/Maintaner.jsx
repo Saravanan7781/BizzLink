@@ -9,7 +9,7 @@ import Register from './Components/Signup/Register'
 import EntrepreneurPitchForm from './Components/Posts/EntrepreneurPitchForm';
 function Maintaner() {
   return (
-      <BrowserRouter>
+      
         <Routes>
             <Route path="/posts" element={<App />} />
             <Route path="/search" element={<Search />} />
@@ -19,7 +19,6 @@ function Maintaner() {
             <Route path="/register" element={ <Register/>}  />      
             <Route path="/pitch" element={ <EntrepreneurPitchForm/>}  />      
         </Routes>
-     </BrowserRouter>
   )
 }
 

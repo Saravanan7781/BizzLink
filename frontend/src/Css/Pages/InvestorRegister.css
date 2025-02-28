@@ -1,15 +1,7 @@
-/* Body Styling */
-body {
-    background-color: aliceblue;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
+
+
   /* Form Styling */
-  form {
+  .investorRegisterInputs {
     width: 100%;
     max-width: 600px;
     min-width: 350px;
@@ -21,25 +13,21 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
   }
   
   /* Heading */
-  h2 {
+  .investorRegisterHeading {
     text-align: center;
     color: #007bff;
   }
   
-  /* Input Fields */
-  input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  /* Checkbox Label */
-/* Checkbox Label */
+
+
 .checkbox-label {
     display: flex;
     /* align-items: center; */
@@ -59,7 +47,7 @@ body {
   }
   
   /* Button */
-  button {
+  .investorRegisterButton {
     background-color: #007bff;
     color: white;
     padding: 12px;
@@ -70,7 +58,7 @@ body {
     transition: 0.3s;
   }
   
-  button:hover {
+  .investorRegisterButton:hover {
     background-color: #0056b3;
   }
   

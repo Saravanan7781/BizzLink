@@ -21,50 +21,50 @@ function EntrepreneurPitchForm() {
 
   return (
     <form className="pitch-form" onSubmit={handleSubmit(onSubmit)}>
-      <h2>Post Your Pitch</h2>
+      <h2 className="entrePitchHeading">Post Your Pitch</h2>
 
-      <input {...register("projectName")} placeholder="Project Name" required />
-      <input {...register("fundingRange")} type="number" placeholder="Funding Range ($)" required />
+      <input className="entrePitchFormInputs" {...register("projectName")} placeholder="Project Name" required />
+      <input className="entrePitchFormInputs" {...register("fundingRange")} type="number" placeholder="Funding Range ($)" required />
 
-      <select {...register("investmentStage")} required>
+      <select className="entrePitchFormInputs" {...register("investmentStage")} required>
         <option value="">Select Investment Stage</option>
         <option value="seed">Seed</option>
         <option value="seriesA">Series A</option>
         <option value="seriesB">Series B</option>
       </select>
 
-      <select {...register("businessType")} required>
+      <select className="entrePitchFormInputs"  {...register("businessType")} required>
         <option value="">Select Business Type</option>
         <option value="b2b">B2B</option>
         <option value="b2c">B2C</option>
         <option value="saas">SaaS</option>
       </select>
 
-      <input {...register("businessField")} placeholder="Business Field (e.g., AI, Medicine)" required />
-      <input {...register("location")} placeholder="Location (City, Country)" required />
-      <input {...register("website")} type="url" placeholder="Website Link (Optional)" />
+      <input className="entrePitchFormInputs" {...register("businessField")} placeholder="Business Field (e.g., AI, Medicine)" required />
+      <input className="entrePitchFormInputs" {...register("location")} placeholder="Location (City, Country)" required />
+      <input className="entrePitchFormInputs" {...register("website")} type="url" placeholder="Website Link (Optional)" />
 
-      <textarea {...register("description")} placeholder="Brief Project Description" required />
+      <textarea className="entrePitchFormInputs" {...register("description")} placeholder="Brief Project Description" required />
 
-      <input {...register("teamSize")} type="number" placeholder="Team Size" required />
+      <input className="entrePitchFormInputs" {...register("teamSize")} type="number" placeholder="Team Size" required />
 
       <label className="checkbox-label">
-        <input type="checkbox" {...register("registeredEntity")} />
+        <input className="entrePitchFormInputs" type="checkbox" {...register("registeredEntity")} />
         Registered Entity
       </label>
 
       {/* Image Upload */}
-      <label className="image-upload">
+      <label className="image-upload-entrePitch">
         Upload Images (Max 5)
-        <input type="file" accept="image/*" multiple onChange={handleImageUpload} />
+        <input className="entrePitchFormInputs" type="file" accept="image/*" multiple onChange={handleImageUpload} />
       </label>
-      <div className="image-preview">
+      <div className="image-preview-entrePitch">
         {images.map((img, index) => (
           <p key={index}>{img.name}</p>
         ))}
       </div>
 
-      <button type="submit">Submit Pitch</button>
+      <button type="submit" className="entrePitchButton">Submit Pitch</button>
     </form>
   );
 }

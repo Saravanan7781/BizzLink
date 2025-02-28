@@ -45,11 +45,9 @@ const login = asyncHandler(async (req, res) => {
                 expiresIn: "1d"
         }  
         ) 
-        console.log(token);
+        // console.log(token);
         res.json({
-            id: user._id,
-            email: user.email,
-            role: user.role,
+            token
         });
     }
     else {
