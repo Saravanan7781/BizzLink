@@ -1,11 +1,8 @@
 import {React,useState,useEffect} from 'react'
 import '../../Css/Components/Posts/PostLayout.css'
 import sample from '../../assets/sample.png'
-// import   from "react";
 import { BiSolidUpvote  } from "react-icons/bi";
-
 import { FaShare } from "react-icons/fa6";
-
 import { AiOutlineMessage } from "react-icons/ai";
 import UseScrollAnimation from '../../Hooks/UseScrollAnimation';
 
@@ -19,12 +16,13 @@ import UseScrollAnimation from '../../Hooks/UseScrollAnimation';
         5)content caption
         6)content description
         7)time and date posted
-
 */
 
-function PostLayout({data}) {
+function PostLayout({ data }) {
+    const { postData} = data;
+    // console.log(postData)
+    const { post_image, upvotes, post_title, post_desc } = postData;
     
-    const { user_dp, username, posted_image, upvote_count, content_caption ,content_description, time_and_date_posted } = data;
     const [isHovered, setIsHovered] = useState(false);
 
   const changeStateOfInnerLayout = (value) => {
@@ -47,12 +45,12 @@ function PostLayout({data}) {
             
           <div className="innerLayout1">
               <div className="userDetails">
-                    <img className="userProfile" src={ user_dp} alt="" />
-                      <p className="username">{username }</p>
+                    <img className="userProfile" src={"asd" } alt="" />
+                      <p className="username">{ }</p>
               </div>
 
               <div className="imageByUser">
-                  <img src={posted_image} alt="uchichaMadara"/>
+                  <img src={post_image} alt="uchichaMadara"/>
               </div>
               <div className="footerOfPostLayout">
                   
@@ -61,7 +59,7 @@ function PostLayout({data}) {
                           <BiSolidUpvote style={{ color: "#f14545" }} size={28} />
                           
                       </div>
-                      <p>{ upvote_count}</p>
+                      <p>{ upvotes}</p>
                           
                       </div>
 
@@ -86,21 +84,17 @@ function PostLayout({data}) {
                       <p className="CaptionOfTheContent">
                               
                               
-                              <p>{ content_caption}</p>
+                              <p>{ post_title}</p>
                         </p>
                       
                               <p className="realContent">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum autem provident consequatur non accusantium facilis, dolores consectetur nesciunt eos explicabo dignissimos nulla, eaque facere nisi voluptates nostrum repellat ullam sint!
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae veritatis harum excepturi, tempore minima commodi omnis maxime doloribus vel expedita totam praesentium. Expedita dolore facere sint, atque esse eaque quaerat!
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia expedita labore fugiat? Quia magni quisquam, delectus ab aliquid enim autem voluptatum harum. Atque fugiat neque, distinctio suscipit natus velit numquam?
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut vero necessitatibus ullam nemo. Temporibus quis sunt tempora iste saepe nobis possimus quisquam, necessitatibus minus sequi maxime sed doloremque dolorum itaque.
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum facilis id, doloremque accusantium sint libero ea odit possimus natus cum veniam, excepturi beatae aliquam facere enim quibusdam ipsa perferendis! Consequatur.
-            </p>
+                                  { post_desc}
+                                </p>
                   </div>
                             )
                             }
                   <div className="footerOfTheContent">
-                      <i>Uploaded on {time_and_date_posted}</i>
+                      <i>Uploaded on {}</i>
                   </div>
                   </div>
                   </div>

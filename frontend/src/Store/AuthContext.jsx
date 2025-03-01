@@ -1,4 +1,4 @@
-import { useContext, createContext, useState, useEffect } from 'react';
+import { useContext, createContext, useState, useEffect,useMemo } from 'react';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -34,9 +34,13 @@ export  const AuthProvider = ({ children }) => {
                 setUserData(null);
             }
     }
+     const contextValue = useMemo(() => ({
+        userData, 
+        setUserData
+    }), [userData]);
      useEffect(() => {
         verifyUser();
-    }, []);
+    }, [navigate]);
   
 
     return (    
