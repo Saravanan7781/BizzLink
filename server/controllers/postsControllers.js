@@ -10,20 +10,19 @@ const getAllPosts = expressAsyncHandler(async(req, res) => {
 });
 
 const getSinglePost = expressAsyncHandler(async(req, res) => {
-    const response = await PostsModel.findById(req.params.id);
+    const response = await PostsModel.find({user_id:req.params.id});
     if (!response) {
         res.status(404);
         throw new Error("Post not found");
     }
     res.status(200).json(
         {
-            "message": `Single post for ${req.params.id}`,
-            "response": response
+            response
          }
     );
 });
 
-const createPost = expressAsyncHandler(async(req, res) => {
+const createPost = expressAsyncHandler(async (req, res) => {
     const {post_image, post_title, post_desc } = req.body;
     
     if (!post_title || !post_desc) {
