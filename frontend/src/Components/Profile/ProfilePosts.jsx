@@ -1,7 +1,7 @@
 import React from 'react'
 import PostLayout from '../Posts/PostLayout'
 
-function ProfilePosts( postData ) {
+function ProfilePosts( {postData} ) {
   
 
   return (

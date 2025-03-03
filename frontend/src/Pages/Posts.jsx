@@ -1,56 +1,63 @@
 import React from 'react'
+import { useEffect,useState} from 'react'  
 import PostLayout from '../Components/Posts/PostLayout'
 import '../Css/Pages/Posts.css'
-import post1 from '../assets/business.jpg'
-import post2 from '../assets/business2.jpg'
-import post3 from '../assets/business3.jpg'
+import axios from 'axios'
+import Cookies from 'js-cookie'
 
 function Posts() {
 
   // const  {userData}  = useAuth();
-  
+  const token = Cookies.get('user');
+  const [posts, setPosts] = useState([]);
+  // console.log(token);
 
-  const blah = " Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum autem provident consequatur non accusantium facilis, dolores consectetur nesciunt eos explicabo dignissimos nulla, eaque facere nisi voluptates nostrum repellat ullam sint!Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae veritatis harum excepturi, tempore minima commodi omnis maxime doloribus vel expedita totam praesentium. Expedita dolore facere sint, atque esse eaque quaerat!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia expedita labore fugiat? Quia magni quisquam, delectus ab aliquid enim autem voluptatum harum. Atque fugiat neque, distinctio suscipit natus velit numquam?Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut vero necessitatibus ullam nemo. Temporibus quis sunt tempora iste saepe nobis possimus quisquam, necessitatibus minus sequi maxime sed doloremque dolorum itaque.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum facilis id, doloremque accusantium sint libero ea odit possimus natus cum veniam, excepturi beatae aliquam facere enim quibusdam ipsa perferendis! Consequatur.";
+  useEffect(() => {
+    console.log(posts);
+  },[posts])
 
-  const list = [
-    {
-    user_dp: post1,
-      username: "saravanan_msd7",
-        posted_image: post1,
-      upvote_count: 72,
-          content_caption: "k",
-            content_description: blah,
-              time_and_date_posted: "10/08/2005 ||  8:00pm"
-  },
-  {
-    user_dp: post2,
-      username: "shrishalini_",
-        posted_image: post2,
-    upvote_count: 100,
-           content_caption: "ii",
-            content_description: blah,
-              time_and_date_posted: "31/08/2004 ||  5:00 am"
-  },
-  {
-    user_dp: post3,
-      username: "latha somasundaram",
-        posted_image: post3,
-    upvote_count: 289,
-           content_caption: "jj",
-            content_description: blah,
-              time_and_date_posted: "10/08/2005 ||  8:00pm"
-  },
-  {
-    user_dp: post1,
-      username: "saravanan._.7",
-        posted_image: post1,
-    upvote_count: 1000000,
-           content_caption: "ji",
-            content_description: blah,
-              time_and_date_posted: "10/08/2005 ||  8:00pm"
-  }
+  // console.log(userData)
+  useEffect(() => {
+    console.log("from app");
+    const getAllPosts = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/posts/getAllPosts', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        if (!response) {
+         
+          console.log("Couldn't get response for getAllPosts in App.js");
+          return;
+        }
+        // console.log(response.data);
+        setPosts(response.data);
 
-]
+      }
+      catch (err) {
+        
+        console.log("Error while getting all user posts through axios" + err );
+        return;
+      }
+
+    }
+    getAllPosts();
+  }, []);
+
+ 
+  // {
+  //   user_dp: post1,
+  //     username: "saravanan._.7",
+  //       posted_image: post1,
+  //   upvote_count: 1000000,
+  //   content_caption: "ji",
+  //          post_image:"ji",
+  //           content_description: blah,
+  //             time_and_date_posted: "10/08/2005 ||  8:00pm"
+  // }
+
+
 
   return (
       
@@ -58,12 +65,11 @@ function Posts() {
       <div className="PostsStyling">
      
       {
-        list.map((datum) => {
+        posts.map((datum) => {
           return (
             <PostLayout data={datum}/>
               )   
             })
-       
       }
         </div>
             </>
