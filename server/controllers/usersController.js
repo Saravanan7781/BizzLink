@@ -6,8 +6,10 @@ const { OAuth2Client } = require('google-auth-library');
 
 
 const register = asyncHandler(async (req, res) => {
-    const { user_image,username, role, email, password, domains } = req.body;
-    if (!username || !role || !email || !password || !domains) {
+    console.log(req.body);
+    const { user_image, username, role, email, password, domains, linkedin,startup,website } = req.body;
+    console.log(linkedin);
+    if (!username || !role || !email || !password  || !linkedin) {
         res.status(400);
         throw new Error("All fields are required");
     }
@@ -17,8 +19,11 @@ const register = asyncHandler(async (req, res) => {
             username,
             role,
             email,
-            password:hashedPassword,
-            domains
+            password: hashedPassword,
+            domains,
+            startup,
+            linkedin,
+            website
         }
     )
     res.json(response);
@@ -55,6 +60,7 @@ const login = asyncHandler(async (req, res) => {
         throw new Error("Invalid email or password");
     }
 });
+
 const googleLogin = asyncHandler(async (req, res) => {
     const { userData } = req.body;
     const client = new OAuth2Client(process.env.VITE_GOOGLE_CLIENT_ID);
