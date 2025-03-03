@@ -19,9 +19,9 @@ import UseScrollAnimation from '../../Hooks/UseScrollAnimation';
 */
 
 function PostLayout({ data }) {
-    const { postData} = data;
-    // console.log(postData)
-    const { post_image, upvotes, post_title, post_desc } = postData;
+    console.log(data)
+    
+    const { post_image, upvotes, post_title, post_desc } = data;
     
     const [isHovered, setIsHovered] = useState(false);
 
@@ -29,11 +29,11 @@ function PostLayout({ data }) {
     if (value) {
         setIsHovered(true);
     } else {
-        setTimeout(() => setIsHovered(false), 10); // Match the transition duration (500ms)
+        setTimeout(() => setIsHovered(false), 10); 
     }
     };  
     
-    UseScrollAnimation(); //scroll animation hook
+    UseScrollAnimation(); 
     
 
 
