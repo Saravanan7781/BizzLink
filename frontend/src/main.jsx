@@ -4,7 +4,8 @@ import './main.css'
 import Maintaner from './Maintaner'
 import App from './App'
 import { AuthProvider } from './Store/AuthContext';
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router,Routes,Route } from "react-router-dom";
+import Register from './Components/Signup/Register'
 
 createRoot(document.getElementById('root')).render(
   // <StrictMode>
@@ -14,6 +15,10 @@ createRoot(document.getElementById('root')).render(
       <Maintaner />
       </div>
     </AuthProvider>
+    <Routes>
+          <Route path="/register" element={ <Register/>}  />  
+
+    </Routes>
     </Router>
   // </StrictMode>
 )

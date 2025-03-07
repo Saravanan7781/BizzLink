@@ -56,7 +56,7 @@ function Profile() {
         <div className= {`profileContainerLayer ${loadedProfilePage ? 'showProfileContainerLayer':''}`}>
           <ProfileBiodata />
           
-        {
+        { 
           userPosts.map((data,index) => {
             return <ProfilePosts key={index} postData={data } />
           })

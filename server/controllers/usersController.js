@@ -9,6 +9,7 @@ const register = asyncHandler(async (req, res) => {
     console.log(req.body);
     const { user_image, username, role, email, password, domains, linkedin,startup,website } = req.body;
     console.log(linkedin);
+    
     if (!username || !role || !email || !password  || !linkedin) {
         res.status(400);
         throw new Error("All fields are required");

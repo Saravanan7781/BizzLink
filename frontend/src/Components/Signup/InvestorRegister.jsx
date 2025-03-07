@@ -1,13 +1,27 @@
 import React from "react";
+import { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import "../../Css/Pages/InvestorRegister.css"; // Import the CSS file
 
+import axios from 'axios'
+
 function InvestorRegister() {
   const { register, handleSubmit } = useForm();
+  const [userData, setUserData] = useState();
 
-  const onSubmit = (data) => {
-    console.log("Investor Data:", data);
+ const onSubmit = async (formData) => {
+    console.log("Form Data: ", formData);
+
+    try {
+      const response = await axios.post("http://localhost:5000/api/user/register", formData);
+      console.log("Registration successful:", response.data);
+    } catch (err) {
+      console.error("Error during registration: ", err);
+    }
   };
+
+  
+
 
   return (
     <div className="register-container">
@@ -25,6 +39,9 @@ function InvestorRegister() {
           <input className="investorRegisterInputs" type="checkbox" {...register("accreditedInvestor")} required />
           I confirm that I am an Accredited Investor as per SEBI regulations.
         </label>
+
+        <input {...register("role")} value="investor" type="hidden" />
+      
 
         <button type="submit" className="investorRegisterButton">Register</button>
       </form>
