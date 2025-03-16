@@ -35,7 +35,7 @@
 }
 
 .profileBiodata {
-    height: 36%;
+    height: 100%;
     padding: 20px;
     /* border: 3px dashed red; */
     display: flex;

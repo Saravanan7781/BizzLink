@@ -21,6 +21,10 @@ const postsSchema = mongoose.Schema({
         type: String,
         required:[true, "Post description is required"]
     },
+    // funding_range: {
+    //     type: Number,
+    //     required:
+    // }
 
 }, {
     timestamps: true
