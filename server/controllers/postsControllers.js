@@ -23,7 +23,7 @@ const getSinglePost = expressAsyncHandler(async(req, res) => {
 });
 
 const createPost = expressAsyncHandler(async (req, res) => {
-    const {post_image, post_title, post_desc } = req.body;
+    const {post_image, post_title, post_desc,funding_range,investment_stage,business_type,business_field,location,website_link } = req.body;
     
     if (!post_title || !post_desc) {
         // console.log("asdasdasdsad");
@@ -36,6 +36,12 @@ const createPost = expressAsyncHandler(async (req, res) => {
         "post_title": post_title,
         "post_image":post_image,
         "post_desc": post_desc,
+        funding_range,
+        investment_stage,
+        business_type,
+        business_field,
+        location,
+        website_link
     });
 
     res.json({

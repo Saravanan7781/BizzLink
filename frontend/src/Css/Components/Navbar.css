@@ -2,26 +2,32 @@
     display: flex;
     height: 13vh;
     width: 100%;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     position: fixed;
-        z-index: 100;
+    top: 0px;
+    z-index: 1;
 }
 
 
-.originalNavbar{
-    border: 3px solid purple;
-    /* position: relative; */
-    /* background-color: ; */
+.originalNavbar, .secondPartOfNavbar a{
     border-radius: 1.8ch;
    height: 70%;
-   width: 80%;
+   width: 70%;
     display: flex;
     justify-content: center;
     align-items: center;
 
-
     /* glassmorphism effect*/
+}
+
+.secondPartOfNavbar a{
+    /* list-style-type: none; */
+    text-decoration: none;
+    color: black;
+}
+
+.originalNavbar, .secondPartOfNavbar a{
     background: rgba(255, 255, 255, 0.12);
         border-radius: 16px;
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -30,12 +36,24 @@
         border: 1px solid rgba(255, 255, 255, 1);
 }
 
-.listOfNavs{
+.listOfNavs {
     list-style: none;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     height: 100%;
     width: 100%;
+}
 
+.listOfNavs a{
+    all: unset;
+    cursor: pointer;
+}
+
+.secondPartOfNavbar{
+    height: 100%;
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

@@ -1,6 +1,7 @@
 .PostsStyling{
     width: 100%;
     display: flex;
+    margin-top: 45%;
     /* border: 2px dashed firebrick; */
     justify-content: center;
     align-items: center;

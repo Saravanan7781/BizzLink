@@ -20,6 +20,8 @@ function EntrepreneurPitchForm() {
   };
 
   return (
+    <div className="entrePitchFormContainer">
+
     <form className="pitch-form" onSubmit={handleSubmit(onSubmit)}>
       <h2 className="entrePitchHeading">Post Your Pitch</h2>
 
@@ -65,6 +67,7 @@ function EntrepreneurPitchForm() {
 
       <button type="submit" className="entrePitchButton">Submit Pitch</button>
     </form>
+        </div>
   );
 }
 
