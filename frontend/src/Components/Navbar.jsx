@@ -1,5 +1,6 @@
 import React from 'react'
 import '../Css/Components/Navbar.css'
+import { Outlet, Link } from 'react-router-dom'
 
 
 function Navbar() {
@@ -7,13 +8,17 @@ function Navbar() {
     <div className="navbarForFlex">
       <div className="originalNavbar">
         <ul className="listOfNavs">
-          <li>Home</li>
-          <li>Home</li>
-          <li>Home</li>
-          <li>Home</li>
-          <li>Home</li>
+          <Link to="/posts">Home</Link>
+          <Link to="search">Search</Link>
+          <Link to="pitch">Pitch</Link>
+          <Link to="about">About</Link>
+          <Link to="logout">Logout</Link>
+         
         </ul>
-        </div>
+      </div>
+      <div className="secondPartNav" className="secondPartOfNavbar">
+         <Link to="profile" >Profile</Link>
+      </div>
     </div>
   )
 }

@@ -1,5 +1,7 @@
 
+
 .registerForm {
+  /* height: 60%; */
     width: 100%; /* Increased width */
     max-width: 600px; /* Ensures it doesn't get too large on big screens */
     min-width: 350px; /* Ensures it's not too small on small screens */

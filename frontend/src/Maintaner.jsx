@@ -7,10 +7,13 @@ import About from './Pages/About';
 import Login from './Pages/Login'
 import Register from './Components/Signup/Register'
 import EntrepreneurPitchForm from './Components/Posts/EntrepreneurPitchForm';
+import Navbar from './Components/Navbar';
 function Maintaner() {
   return (
-      
-        <Routes>
+      <>
+    <Navbar/>
+    <Routes>
+            
             <Route path="/posts" element={<App />} />
             <Route path="/search" element={<Search />} />
             <Route path="/profile" element={<Profile />} />
@@ -19,6 +22,7 @@ function Maintaner() {
     
             <Route path="/pitch" element={ <EntrepreneurPitchForm/>}  />      
         </Routes>
+      </>
   )
 }
 
