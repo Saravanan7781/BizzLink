@@ -8,12 +8,13 @@ import Login from './Pages/Login'
 import Register from './Components/Signup/Register'
 import EntrepreneurPitchForm from './Components/Posts/EntrepreneurPitchForm';
 import Navbar from './Components/Navbar';
+import LandingPage from './Components/LandingPage';
 function Maintaner() {
   return (
       <>
     <Navbar/>
     <Routes>
-            
+        <Route path='/' element={ <LandingPage />}></Route>
             <Route path="/posts" element={<App />} />
             <Route path="/search" element={<Search />} />
             <Route path="/profile" element={<Profile />} />
