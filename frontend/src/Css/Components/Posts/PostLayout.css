@@ -118,7 +118,7 @@
 
 .innerLayout2{      
     border-radius: 1.7ch;
-    background-color: #7b6ed4;
+    background-color: #a1d46e;
     border-left: 3px solid white; /*change it to backgroud color in future if changed */
     width:0;
     transition: opacity 0.5s ease, width 0.5s ease;

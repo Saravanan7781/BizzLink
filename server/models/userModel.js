@@ -10,7 +10,8 @@ const userSchema = mongoose.Schema({
     },
     role: {
         type: String,
-        required: [true, "Role is required"]
+        enum: ['entrepreneur', 'investor'],
+        required: true
     },
     upvotes: {
         type: Number,
@@ -42,7 +43,7 @@ const userSchema = mongoose.Schema({
     },
     startup: {
         type:String
-    }
+    },
 });
 
 module.exports = mongoose.model('users', userSchema);

@@ -25,12 +25,9 @@ const postsSchema = mongoose.Schema({
         type: String,
         required:[true,"Please provide funding range"]
     },
-    investment_stage: {
-        type: String
-    },
-    business_type:{
-        type:String
-    },
+    investmentStage: { type: String, required: true, enum: ["seed", "seriesA", "seriesB"] },
+    businessType: { type: String, required: true, enum: ["b2b", "b2c", "saas"] },
+
     business_field: {
         type:String
     },
@@ -39,7 +36,14 @@ const postsSchema = mongoose.Schema({
     },
     website_link: {
         type: String
+    },
+    teamSize: { 
+        type: Number, required: true 
+    },
+    registeredEntity: {
+         type: Boolean, default: false 
     }
+
 
 }, {
     timestamps: true

@@ -8,7 +8,7 @@ const userRoutes = require('./routes/userRoutes');
 const cors  = require('cors');
 const {dbConfig} = require('./config/dbConfig');
 const verifyTokenHandler = require('./Middlewares/verifyAuthtokenHandler');
-
+const RecommendAPI = require('./controllers/RecommendAPI');
 try {
     dbConfig();
 }
@@ -34,3 +34,4 @@ app.use("/api/user/", userRoutes);
 app.use(verifyTokenHandler);
 app.use("/api/posts/", postRoutes);
 app.use(errHandler);
+app.use("api/recommend/",RecommendAPI);
