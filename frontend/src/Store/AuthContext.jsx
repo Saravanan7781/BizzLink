@@ -34,10 +34,13 @@ export  const AuthProvider = ({ children }) => {
                 setUserData(null);
             }
     }
+    
      const contextValue = useMemo(() => ({
         userData, 
         setUserData
     }), [userData]);
+
+
      useEffect(() => {
         verifyUser();
     }, [navigate]);
