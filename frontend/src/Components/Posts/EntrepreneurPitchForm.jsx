@@ -50,9 +50,8 @@ function EntrepreneurPitchForm() {
 
       <input className="entrePitchFormInputs" {...register("teamSize")} type="number" placeholder="Team Size" required />
 
-      <label className="checkbox-label">
-        <input className="entrePitchFormInputs" type="checkbox" {...register("registeredEntity")} />
-        Registered Entity
+      <label className="checkbox-label">Registered Entity
+        <input className="checkbox-label-check" type="checkbox" {...register("registeredEntity")} />
       </label>
 
       {/* Image Upload */}
