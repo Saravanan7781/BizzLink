@@ -16,7 +16,7 @@ function Navbar() {
          
         </ul>
       </div>
-      <div className="secondPartNav" className="secondPartOfNavbar">
+      <div className="secondPartNav secondPartOfNavbar" >
          <Link to="profile" >Profile</Link>
       </div>
     </div>

@@ -1,5 +1,6 @@
 .entrePitchHeading{
   font-size: 2rem;
+  color: rgb(248, 241, 241);;
 }
   
 .entrePitchFormContainer {
@@ -16,7 +17,7 @@
     height: 60%;
     height: 100%;
     width: 100%;
-    background: rgb(217, 217, 255);
+    background: #1a87f3d9;
     padding: 25px;
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);

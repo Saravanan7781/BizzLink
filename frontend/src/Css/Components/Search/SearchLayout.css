@@ -1,33 +1,38 @@
 .SearchLayout {
-    border: 3px solid black;
+    /* border: 3px solid black; */
     margin-top: 5%;
-    /* height: 100vh; */
-    width: 90%;
+    height: 80vh;
+    width: 95%;
+    align-items:center;
+    justify-content: space-around;
     display: flex;
     /* background-color: blue; */
 }
 
 .col1 {
     height: 70vh;
-    width: 30%;
-    background-color: rgb(223, 146, 146);
+   border-radius: 1.4ch;
+    width: 25%;
+    background-color: #d6e6ff;
 }
 
 .searchSection {
-    height: auto;
-    width: 80%;
+    overflow: hidden;
+    width: 39vw;
+    height: 100%;
     background-color: rgb(155, 155, 240);
 }
 
 .searchActivities {
     height: 30vh;
-    background-color: rgb(90, 80, 80);
+    /* background-color: rgb(90, 80, 80); */
 }
 
 .searchbarLayout {
     height: 90%;
 
-    border: 3px solid black;
+    border: 1px solid transparent;
+    border-radius: 1.2ch;
     background-color: wheat;
     display: flex;
     flex-direction: column;
@@ -37,16 +42,24 @@
 
 .searchbarFilters {
     display: flex;
-    height: 50%;
-    width: 100%;
+    height: 45%;
+    width: 90%;
+    justify-content: space-around;
 }
 
 .searchbarfilter1,
 .searchbarfilter2,
 .searchbarfilter3 {
     height: 70%;
-    width: 50%;
-    border: 3px solid black;
+    width: 32%;
+    border-radius: 1.3ch;
+    border: 1.2px solid black;
+}
+
+.searchbarfilter1:hover,
+.searchbarfilter2:hover,
+.searchbarfilter3:hover {
+   cursor: pointer;
 }
 
 .searchbarFromSearchLayout {
@@ -72,6 +85,10 @@
 .visiblePeople {
     /* height: 70%; */
     width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
     /* background-color: rgb(157, 145, 78); */
 
 }
@@ -79,13 +96,14 @@
 .visiblePerson {
     display: flex;
     /* position: relative; */
-    width: 100%;
+    width: 97%;
     cursor: pointer;
     /* z-index: 100; */
-    margin-bottom: 1%;
+    margin-top: 1%;
     background-color: rgb(161, 103, 103);
-    border: 2px solid black;
+    border: 1px solid black;
     border-radius: 2%;
+    border-radius: 1.3ch;
 }
 
 .visiblePerson:hover {
@@ -111,7 +129,9 @@
 }
 
 .profileDescription {
-    width: 90%;
+    width: 70%;
+    /* height: 20%; */
+    /* border: 1px solid red; */
     color: black;
     display: flex;
     flex-direction: column;
@@ -123,7 +143,7 @@
     color: black;
     font-family: "Poppins", serif;
     font-weight: 500;
-    font-size: 2rem;
+    font-size: 1.7rem;
     display: flex;
     justify-content: start;
     transform: translateX(20%);
@@ -156,6 +176,7 @@
 
 .col3 {
     height: 70vh;
-    width: 30%;
-    background-color: rgb(202, 188, 113);
+    width: 25%;
+    background-color: #d6e6ff; 
+    border-radius: 1.4ch;
 }

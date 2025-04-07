@@ -12,13 +12,11 @@ function Posts() {
   const [posts, setPosts] = useState([]);
   // console.log(token);
 
-  useEffect(() => {
-    console.log(posts);
-  },[posts])
+  // useEffect(() => {
+  //   console.log(posts);
+  // },[posts])
 
-  // console.log(userData)
   useEffect(() => {
-    console.log("from app");
     const getAllPosts = async () => {
       try {
         const response = await axios.get('http://localhost:5000/api/posts/getAllPosts', {

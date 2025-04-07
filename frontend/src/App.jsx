@@ -6,8 +6,6 @@ import './App.css'
 
 function App() {
   
-  // console.log("from app")
-
   return (
 
     <div className="OGapp">
