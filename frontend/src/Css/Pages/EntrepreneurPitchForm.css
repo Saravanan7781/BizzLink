@@ -41,14 +41,19 @@
   
   /* Checkbox */
   .checkbox-label {
-    display: flex;
+    display: block;
     align-items: center;
-    gap: 5px;
+    gap: 0px;
+    font-size: larger;
   }
   
-  .checkbox-label input {
-    transform: scale(1.2);
+  .checkbox-label-check {
+    /* Make the checkbox larger */
+    width: 20px;
+    height: 20px;
+    margin: 10px;
     cursor: pointer;
+    transition: background-color 0.3s;
   }
   
   /* Image Upload */
