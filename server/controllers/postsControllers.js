@@ -21,35 +21,59 @@ const getSinglePost = expressAsyncHandler(async(req, res) => {
          }
     );
 });
+const createPost = async (req, res) => {
+  try {
+      const {
+        user_id,
+      post_title,
+      post_desc,
+      funding_range,
+      investment_stage,
+      business_type,
+      business_field,
+      location,
+      website_link,
+      team_size,
+      registered_entity,
+    } = req.body;
 
-const createPost = expressAsyncHandler(async (req, res) => {
-    const {post_image, post_title, post_desc,funding_range,investment_stage,business_type,business_field,location,website_link } = req.body;
+      console.log(req.body);
+     
+    const imageUrls = req.files?.map((file) => file.path) || [];
+    // Now save the post to DB (MongoDB or any)
     
-    if (!post_title || !post_desc) {
-        // console.log("asdasdasdsad");
-        res.status(400);
-        throw new Error("All fields are required");
-    }
+      const newPostSchema = {
+          user_id,
+          post_title,
+          post_desc,
+          funding_range,
+          investment_stage,
+          business_type,
+          business_field,
+          location,
+          website_link,
+          team_size,
+          registered_entity,
+          post_images: imageUrls
+      };
+      const response = await PostsModel.create(newPostSchema);
+      if (!response) {
+        throw new Error("Post not created");
+       };
+      
 
-    const response = await PostsModel.create({
-        "user_id": req.user.id,
-        "post_title": post_title,
-        "post_image":post_image,
-        "post_desc": post_desc,
-        funding_range,
-        investment_stage,
-        business_type,
-        business_field,
-        location,
-        website_link
+    console.log("Created Post:", newPostSchema);
+
+    res.status(201).json({
+      message: "Post created successfully",
+      post: newPostSchema,
     });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
 
-    res.json({
-        "message": "Created new Post",
-         response
-    }
-    );
-});
 
 const editPost = expressAsyncHandler(async(req, res) => {
     const response = await PostsModel.findByIdAndUpdate(req.params.id, req.body, {

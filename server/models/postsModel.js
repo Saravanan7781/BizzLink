@@ -6,9 +6,10 @@ const postsSchema = mongoose.Schema({
         ref: 'users',
         required:[true, "User ID is required"]
     },
-    post_image: {
-        type:String,
-    },
+    post_images: {
+    type: [String], // array of image URLs
+    }
+,
     upvotes: {
         type: Number,
         default:0
@@ -25,8 +26,8 @@ const postsSchema = mongoose.Schema({
         type: String,
         required:[true,"Please provide funding range"]
     },
-    investmentStage: { type: String, required: true, enum: ["seed", "seriesA", "seriesB"] },
-    businessType: { type: String, required: true, enum: ["b2b", "b2c", "saas"] },
+    investment_stage: { type: String, required: true, enum: ["seed", "seriesA", "seriesB"] },
+    business_type: { type: String, required: true, enum: ["b2b", "b2c", "saas"] },
 
     business_field: {
         type:String
@@ -37,10 +38,10 @@ const postsSchema = mongoose.Schema({
     website_link: {
         type: String
     },
-    teamSize: { 
+    team_size: { 
         type: Number, required: true 
     },
-    registeredEntity: {
+    registered_entity: {
          type: Boolean, default: false 
     }
 

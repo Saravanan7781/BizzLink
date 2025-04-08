@@ -7,14 +7,10 @@ import Cookies from 'js-cookie'
 
 function Posts() {
 
-  // const  {userData}  = useAuth();
+
   const token = Cookies.get('user');
   const [posts, setPosts] = useState([]);
-  // console.log(token);
 
-  // useEffect(() => {
-  //   console.log(posts);
-  // },[posts])
 
   useEffect(() => {
     const getAllPosts = async () => {
@@ -42,18 +38,6 @@ function Posts() {
     }
     getAllPosts();
   }, []);
-
- 
-  // {
-  //   user_dp: post1,
-  //     username: "saravanan._.7",
-  //       posted_image: post1,
-  //   upvote_count: 1000000,
-  //   content_caption: "ji",
-  //          post_image:"ji",
-  //           content_description: blah,
-  //             time_and_date_posted: "10/08/2005 ||  8:00pm"
-  // }
 
 
 

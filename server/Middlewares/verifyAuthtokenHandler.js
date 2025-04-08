@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const verifyTokenHandler = asyncHandler(async (req, res, next) => {
     let token = req.headers.authorization || req.headers.Authorization;
+    // console.log(token)
     if (!token) {
         res.status(401);
         throw new Error("Token is not available");

@@ -9,6 +9,7 @@ const cors  = require('cors');
 const {dbConfig} = require('./config/dbConfig');
 const verifyTokenHandler = require('./Middlewares/verifyAuthtokenHandler');
 const RecommendAPI = require('./controllers/RecommendAPI');
+
 try {
     dbConfig();
 }
