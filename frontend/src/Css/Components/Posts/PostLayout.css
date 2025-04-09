@@ -3,11 +3,22 @@
 
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-.outerLayout{
-    position: static;
+.outerLayoutForProfile{
     /* z-index: 0; */
+    height: 76vh;
+    display: flex;
+    width: 85%;
+    margin-top: 4%;
+    margin-bottom: 2%;
+}
+
+.outerLayoutForRecommendationPost{
+    height: 76vh;
     display: flex;
     width: 65%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-top: 4%;
     margin-bottom: 2%;
 }
@@ -140,6 +151,7 @@
     background-color: #a1d46e;
     border-left: 3px solid white; /*change it to backgroud color in future if changed */
     width:0;
+    height: 100%;
     transition: opacity 0.5s ease, width 0.5s ease;
     pointer-events: none;
     position: relative;
@@ -151,6 +163,7 @@
     opacity: 1;
     visibility: visible;
     width: 60%;
+    height: 100%;
     /* transform: translateY(0); */
     pointer-events: auto;
     display: block;

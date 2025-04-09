@@ -5,6 +5,7 @@ import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import axios from 'axios';
 import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom';
+
 function Login() {
   const navigate = useNavigate();
   const [userData, setUserData] = useState(
@@ -76,7 +77,7 @@ function Login() {
             <p>or</p>
 
             <div className="signUpWithGoogle">
-              <GoogleLogin onSuccess={handleGoogleSuccess} onError={handleGoogleFailure} />
+              <GoogleLogin onSuccess={handleGoogleSuccess} onError={handleGoogleFailure} /> 
             </div>
 
           </div>

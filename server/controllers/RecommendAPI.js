@@ -2,36 +2,37 @@ const express = require('express');
 const router = express.Router();
 const Post = require('../models/postsModel');
 
-// Recommendation Route
-router.get('/recommendations', async (req, res) => {
+// Recommendation Route (POST)
+router.post('/recommendations', async (req, res) => {
     try {
-        const { businessField, fundingRange, location } = req.query;
+        const { business_field, funding_range, location } = req.body;
 
-        if (!businessField || !fundingRange || !location) {
-            return res.status(400).json({ message: "Missing required query parameters." });
+        if (!business_field || !funding_range || !location) {
+            return res.status(400).json({ message: "Missing required fields in request body." });
         }
 
-        const businessFields = businessField.split(',').map(field => field.trim().toLowerCase());
-        const investorFundingRange = Number(fundingRange);
+        // Accept both comma-separated string or array
+        const businessFields = Array.isArray(business_field)
+            ? business_field.map(field => field.trim().toLowerCase())
+            : business_field.split(',').map(field => field.trim().toLowerCase());
 
-        const posts = await Post.find({});
+        const investorFundingRange = Number(funding_range);
+
+        const posts = await Post.find({}).lean(); // faster response
 
         const scoredPosts = posts.map(post => {
             let score = 0;
 
-            // Convert fields to lowercase for case-insensitive comparison
             const postBusinessField = post.business_field.toLowerCase();
             const postLocation = post.location.toLowerCase();
 
-            // Check each criterion and update score
             if (businessFields.includes(postBusinessField)) score++;
             if (post.funding_range <= investorFundingRange) score++;
             if (postLocation === location.toLowerCase()) score++;
 
-            return { ...post._doc, score };
+            return { ...post, score };
         });
 
-        // Sort posts by score and then by upvotes
         const sortedPosts = scoredPosts.sort((a, b) => b.score - a.score || b.upvotes - a.upvotes);
 
         res.status(200).json(sortedPosts);

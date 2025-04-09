@@ -7,16 +7,17 @@
 .loginFormOuter{
     height: 100%;
     width: 50%;
-    border: 3px solid red;
+    border-right: 2px solid red;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .loginForm{
-    width: 55%;
+    width: 60%;
     height: 80%;
-    border:1px solid red;
+    border:1px solid black;
+    border-radius: 1.3ch;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -49,7 +50,7 @@
 
 .loginFormInputDetails input{
     height: 10%;
-    width: 100%;
+    width: 90%;
     border: none;
     font-size: 1.1rem;
     font-family: poppins;
@@ -86,5 +87,5 @@
 .signUpWithGoogle{
     height: 10%;
     width: 60%;
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
 }

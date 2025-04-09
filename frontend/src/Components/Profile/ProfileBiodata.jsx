@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import asta from '../../assets/business.jpg';
 import { useAuth } from '../../Store/AuthContext';
+import axios from "axios";
+import Cookies from 'js-cookie';
 
 function ProfileBiodata() {
-    
+    const { userData } = useAuth();
+    const [upvotes, setUpvotes] = useState(0);
+    const [followers, setFollowers] = useState(0);
+    const [ideas, setIdeas] = useState(0);
+    const token = Cookies.get('user');
 
     const useCounter = (target) => {
         const [count, setCount] = useState(0);
 
         useEffect(() => {
-            const intervalTime = 25; 
-            const duration = 1500; 
+            const intervalTime = 25;
+            const duration = 1500;
             const steps = Math.ceil(duration / intervalTime);
             const stepSize = target / steps;
 
@@ -24,10 +30,39 @@ function ProfileBiodata() {
         return count;
     };
 
-    // Separate counters for each stat
-    const upvotes = useCounter(11);
-    const followers = useCounter(90);
-    const ideas = useCounter(100);
+    // 👉 Move counter logic to top level
+    const animatedUpvotes = useCounter(upvotes);
+    const animatedFollowers = useCounter(followers);
+    const animatedIdeas = useCounter(ideas);
+
+    useEffect(() => {
+        const getUserData = async () => {
+            try {
+                const response = await axios.post(
+                    'http://localhost:5000/api/user/fetchCurrentUserData',
+                    { id: userData.id },
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`,
+                        },
+                    }
+                );
+
+                if (!response) {
+                    console.log("Response not fetched");
+                    return;
+                }
+
+                setFollowers(response.data.followers);
+                setIdeas(response.data.ideas);
+                setUpvotes(response.data.upvotes);
+            } catch (error) {
+                console.error("Error fetching user data", error);
+            }
+        };
+
+        getUserData();
+    }, [userData, token]);
 
     return (
         <div className="profileBiodata">
@@ -44,15 +79,15 @@ function ProfileBiodata() {
                 <div className="profileBiodataProfileCounts">
                     <div className="profileBiodataProfileCountsInfo">
                         <h1>Upvotes</h1>
-                        <h1>{Math.round(upvotes)}</h1>
+                        <h1>{Math.round(animatedUpvotes)}</h1>
                     </div>
                     <div className="profileBiodataProfileCountsInfo">
                         <h1>Followers</h1>
-                        <h1>{Math.round(followers)}</h1>
+                        <h1>{Math.round(animatedFollowers)}</h1>
                     </div>
                     <div className="profileBiodataProfileCountsInfo">
                         <h1>Ideas</h1>
-                        <h1>{Math.round(ideas)}</h1>
+                        <h1>{Math.round(animatedIdeas)}</h1>
                     </div>
                 </div>
             </div>

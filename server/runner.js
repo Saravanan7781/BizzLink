@@ -34,5 +34,5 @@ app.use(express.json());
 app.use("/api/user/", userRoutes);
 app.use(verifyTokenHandler);
 app.use("/api/posts/", postRoutes);
+app.use("/api/recommend/",RecommendAPI);
 app.use(errHandler);
-app.use("api/recommend/",RecommendAPI);

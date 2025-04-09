@@ -21,7 +21,8 @@ import { MapPin} from 'lucide-react'
 
 function PostLayout({ data }) {
     
-    const { post_images, upvotes, post_title, post_desc,business_field,funding_range,investment_stage,business_type,location,website_link,team_size,registered_entity } = data;
+    const { post_images, upvotes, post_title, post_desc, business_field, funding_range, investment_stage, business_type, location, website_link, team_size, registered_entity } = data;
+    
     console.log(post_images[0])
     // console.log(post_image);
     const [isHovered, setIsHovered] = useState(false);
@@ -38,7 +39,7 @@ function PostLayout({ data }) {
     
   return (
       <>
-          <div className="outerLayout" onMouseEnter={() => changeStateOfInnerLayout(true)} onMouseLeave={ () =>changeStateOfInnerLayout(false)}>
+          <div className="outerLayoutForProfile" onMouseEnter={() => changeStateOfInnerLayout(true)} onMouseLeave={ () =>changeStateOfInnerLayout(false)}>
               <div className="wholeLayerForAnimation">
                   
             
@@ -55,7 +56,7 @@ function PostLayout({ data }) {
               
 
               <div className="imageByUser">
-                  <img src="s" alt="uchichaMadara"/>
+                  <img src={post_images[0]} alt="uchichaMadara"/>
                       </div>
                       
                  <div className="mainFooterOfThePostLayout">
