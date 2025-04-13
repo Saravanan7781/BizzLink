@@ -5,10 +5,12 @@ const app = express();
 const dotenv = require('dotenv').config();
 const postRoutes = require('./routes/postsRoutes');
 const userRoutes = require('./routes/userRoutes');
+const searchRoutes = require('./routes/searchRoutes');
 const cors  = require('cors');
 const {dbConfig} = require('./config/dbConfig');
 const verifyTokenHandler = require('./Middlewares/verifyAuthtokenHandler');
 const RecommendAPI = require('./controllers/RecommendAPI');
+
 try {
     dbConfig();
 }
@@ -33,5 +35,6 @@ app.use(express.json());
 app.use("/api/user/", userRoutes);
 app.use(verifyTokenHandler);
 app.use("/api/posts/", postRoutes);
+app.use("/api/recommend/", RecommendAPI);
+app.use('/api/search/', searchRoutes);
 app.use(errHandler);
-app.use("api/recommend/",RecommendAPI);

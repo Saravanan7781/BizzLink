@@ -4,22 +4,19 @@ import PostLayout from '../Components/Posts/PostLayout'
 import '../Css/Pages/Posts.css'
 import axios from 'axios'
 import Cookies from 'js-cookie'
+import { useAuth } from '../Store/AuthContext'
 
 function Posts() {
 
-  // const  {userData}  = useAuth();
+
   const token = Cookies.get('user');
   const [posts, setPosts] = useState([]);
-  // console.log(token);
-
-  // useEffect(() => {
-  //   console.log(posts);
-  // },[posts])
+  const { url } = useAuth();
 
   useEffect(() => {
     const getAllPosts = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/posts/getAllPosts', {
+        const response = await axios.get(`${url}/api/posts/getAllPosts`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -43,18 +40,6 @@ function Posts() {
     getAllPosts();
   }, []);
 
- 
-  // {
-  //   user_dp: post1,
-  //     username: "saravanan._.7",
-  //       posted_image: post1,
-  //   upvote_count: 1000000,
-  //   content_caption: "ji",
-  //          post_image:"ji",
-  //           content_description: blah,
-  //             time_and_date_posted: "10/08/2005 ||  8:00pm"
-  // }
-
 
 
   return (
@@ -65,7 +50,9 @@ function Posts() {
       {
         posts.map((datum) => {
           return (
+            <div className="outerLayoutForRecommendationPost" key={datum._id}>
             <PostLayout data={datum}/>
+            </div>
               )   
             })
       }

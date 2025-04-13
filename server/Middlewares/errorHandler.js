@@ -41,7 +41,7 @@ const errHandler = (err, req, res, next) => {
             break;
     }
 
-    console.log("Error handler executed");
+    console.log("Error handler executed "+err );
 }
 
 module.exports = { errHandler };

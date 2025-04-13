@@ -2,17 +2,21 @@
 
 .registerForm {
   /* height: 60%; */
-    width: 100%; /* Increased width */
-    max-width: 600px; /* Ensures it doesn't get too large on big screens */
-    min-width: 350px; /* Ensures it's not too small on small screens */
+    
+    width: 60%;
+    border: 1px solid black;
     margin: 40px auto;
     padding: 25px;
     background: #f9f9f9;
-    border-radius: 8px;
+    border-radius: 1.2ch;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     gap: 15px;
+  }
+
+  .registerForm input:focus {
+    outline: none;
   }
   
   /* Heading */

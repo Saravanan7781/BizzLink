@@ -1,0 +1,9 @@
+.entreInvestorRegister{
+    width: 80%;
+    height: 80%;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}

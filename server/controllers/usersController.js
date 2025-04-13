@@ -102,9 +102,25 @@ const googleLogin = asyncHandler(async (req, res) => {
     });
 });
 
+const fetchUser = asyncHandler(async(req, res) => {
+    const user = req.body.id;
+    // console.log(req.body)
+    console.log("fetchUser called");
+    if (!user) {
+        res.status(401);
+        throw new Error("User not found");
+    }
+    const respone = await userModel.findById(user).select("-password");
+
+    if (!respone) {
+        res.status(404);
+        throw new Error("User not found");
+    }
+    res.json(respone);
+})
 
 const current = asyncHandler(async (req, res) => {
     res.json(req.user);
 });
 
-module.exports = { register,login,current,googleLogin };
+module.exports = { register,login,current,googleLogin,fetchUser };

@@ -3,11 +3,22 @@
 
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-.outerLayout{
-    position: static;
+.outerLayoutForProfile{
     /* z-index: 0; */
+    height: 76vh;
+    display: flex;
+    width: 85%;
+    margin-top: 4%;
+    margin-bottom: 2%;
+}
+
+.outerLayoutForRecommendationPost{
+    height: 76vh;
     display: flex;
     width: 65%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-top: 4%;
     margin-bottom: 2%;
 }
@@ -40,13 +51,17 @@
 
 
 
-.userDetails{
+.userPostDescriptionStart{
     /* border: 4px solid firebrick; */
     display: flex;
-    height: 1%;
-    justify-content: center;
+    height: 5%;
+    justify-content: space-between;
     align-items: center;
-    width: fit-content;
+    width: 90%;
+}
+
+.userDetails{
+    display: flex;
 }
 
 .userProfile{
@@ -82,12 +97,27 @@
     
 }
 
-.footerOfPostLayout{
+.mainFooterOfThePostLayout{
     height: 6%;
-    width: 30%;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footerOfPostLayout{
+    height: 100%;
+    width: 12vw;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+}
+.sideFooterForLocation{
+    width: 7vw;
+    /* border: 1px solid white; */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .overallInsights{
@@ -121,6 +151,7 @@
     background-color: #a1d46e;
     border-left: 3px solid white; /*change it to backgroud color in future if changed */
     width:0;
+    height: 100%;
     transition: opacity 0.5s ease, width 0.5s ease;
     pointer-events: none;
     position: relative;
@@ -132,6 +163,7 @@
     opacity: 1;
     visibility: visible;
     width: 60%;
+    height: 100%;
     /* transform: translateY(0); */
     pointer-events: auto;
     display: block;
@@ -140,7 +172,26 @@
 
 .captionByUser{
     height: 6.5vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     /* border: 1px solid gold; */
+}
+
+.investmentStageFromPosts{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fundingRangeInPost{
+    width:60%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .contentByUser{

@@ -8,9 +8,9 @@ const AuthContext = createContext();
 export  const AuthProvider = ({ children }) => {
     const [userData, setUserData] = useState(null);
     const navigate = useNavigate();
+    const url = "http://localhost:5000";
     
-        async function verifyUser() {
-            
+    async function verifyUser() {
             try {
                 const token = Cookies.get('user');
                 if (!token) {
@@ -19,13 +19,12 @@ export  const AuthProvider = ({ children }) => {
                     return;
                 }
                 else {
-                    const response = await axios.get('http://localhost:5000/api/user/current', {
+                    const response = await axios.get(`${url}/api/user/current`, {
                         headers: {
                             Authorization: `Bearer ${token}`
                         }
                     })
                     
-                    // console.log(response.data);
                     setUserData(response.data);
                 }
             }
@@ -47,7 +46,7 @@ export  const AuthProvider = ({ children }) => {
   
 
     return (    
-        <AuthContext.Provider value={{userData, setUserData}}>
+        <AuthContext.Provider value={{userData, setUserData, url}}>
             {children}
         </AuthContext.Provider>
     )

@@ -1,5 +1,7 @@
 const expressAsyncHandler = require('express-async-handler');
 const PostsModel= require('../models/postsModel');
+const UserModel = require('../models/userModel');
+const postsModel = require('../models/postsModel');
 
 const getAllPosts = expressAsyncHandler(async(req, res) => {
 
@@ -21,35 +23,60 @@ const getSinglePost = expressAsyncHandler(async(req, res) => {
          }
     );
 });
+const createPost = async (req, res) => {
+  try {
+      const {
+        user_id,
+      post_title,
+      post_desc,
+      funding_range,
+      investment_stage,
+      business_type,
+      business_field,
+      location,
+      website_link,
+      team_size,
+      registered_entity,
+    } = req.body;
 
-const createPost = expressAsyncHandler(async (req, res) => {
-    const {post_image, post_title, post_desc,funding_range,investment_stage,business_type,business_field,location,website_link } = req.body;
+      console.log(req.body);
+     
+    const imageUrls = req.files?.map((file) => file.path) || [];
+    // Now save the post to DB (MongoDB or any)
     
-    if (!post_title || !post_desc) {
-        // console.log("asdasdasdsad");
-        res.status(400);
-        throw new Error("All fields are required");
-    }
+      const newPostSchema = {
+          user_id,
+          upvotes:[],
+          post_title,
+          post_desc,
+          funding_range,
+          investment_stage,
+          business_type,
+          business_field,
+          location,
+          website_link,
+          team_size,
+          registered_entity,
+          post_images: imageUrls
+      };
+      const response = await PostsModel.create(newPostSchema);
+      if (!response) {
+        throw new Error("Post not created");
+       };
+      
 
-    const response = await PostsModel.create({
-        "user_id": req.user.id,
-        "post_title": post_title,
-        "post_image":post_image,
-        "post_desc": post_desc,
-        funding_range,
-        investment_stage,
-        business_type,
-        business_field,
-        location,
-        website_link
+    console.log("Created Post:", newPostSchema);
+
+    res.status(201).json({
+      message: "Post created successfully",
+      post: newPostSchema,
     });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
 
-    res.json({
-        "message": "Created new Post",
-         response
-    }
-    );
-});
 
 const editPost = expressAsyncHandler(async(req, res) => {
     const response = await PostsModel.findByIdAndUpdate(req.params.id, req.body, {
@@ -82,4 +109,52 @@ const deletePost = expressAsyncHandler(async(req, res) => {
     );
 });
 
-module.exports = {getAllPosts,getSinglePost,editPost,deletePost,createPost};
+const setImageForUser = expressAsyncHandler(async (req, res) => {
+    // console.log("called successfully");
+    // console.log(req.body);
+    // console.log(req.file);
+    const { user_id } = req.body;
+    const imageUrl = req.file.path;
+    // console.log("image url", imageUrl);
+    const response = await UserModel.findByIdAndUpdate(user_id, { img: imageUrl }, { new: true });
+    if (!response) {
+        res.status(404);
+        throw new Error("Cannot set image for user check the id");
+    }
+    res.status(200).json(
+        {
+            response: response.img
+        }
+    );
+})
+
+
+const likePost = expressAsyncHandler(async (req, res) => {
+    const { id } = req.params;
+    // console.log(id);
+    // console.log(req.params);
+    const { user_id,action } = req.body;
+    console.log(user_id);
+    const post = await postsModel.findById(id);
+    if (!post) {
+        res.status(404);
+        throw new Error("Cannot like post check the id");
+    }
+    if (action === 'normal') {}
+    else {
+        if (post.upvotes.includes(user_id)) {
+            post.upvotes = post.upvotes.filter((likedUsers) => likedUsers != (user_id));
+        }
+        else {
+            post.upvotes.push(user_id);
+        }
+
+    }
+    await post.save();
+    return res.status(200).json({
+        upvotes: post.upvotes.length,
+        status: post.upvotes.includes(user_id) ? true : false
+    })
+})
+
+module.exports = {getAllPosts,getSinglePost,editPost,deletePost,createPost,setImageForUser, likePost};

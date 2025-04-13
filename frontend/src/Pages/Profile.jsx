@@ -6,21 +6,19 @@ import ProfileBiodata from '../Components/Profile/ProfileBiodata'
 import axios from "axios";
 import { useAuth } from '../Store/AuthContext';
 import Cookies from 'js-cookie'
+import { useParams } from 'react-router-dom';
 
 function Profile() { 
   const { userData } = useAuth();
   const [userPosts, setUserPosts] = useState([]);
-
-  useEffect(() => {
-    console.log(userPosts);
-  },[userPosts])
-
+  
+    const {userId} = useParams();
+    // console.log(userId)
   useEffect(() => {
     const getUserPosts = async () => {
-      // console.log(userData.id);
       const token = Cookies.get('user');
       try {
-        const response = await axios.get(`http://localhost:5000/api/posts/getSinglePost/${userData.id}`, {
+        const response = await axios.get(`http://localhost:5000/api/posts/getSinglePost/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -54,7 +52,7 @@ function Profile() {
   return (
     <div className="dupProfileContainerLayer">
         <div className= {`profileContainerLayer ${loadedProfilePage ? 'showProfileContainerLayer':''}`}>
-          <ProfileBiodata />
+        <ProfileBiodata   userId={ userId} />
           
         { 
           userPosts.map((data,index) => {
