@@ -8,12 +8,12 @@ const postsSchema = mongoose.Schema({
     },
     post_images: {
     type: [String], // array of image URLs
-    }
-,
-    upvotes: {
-        type: Number,
-        default:0
     },
+    upvotes: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'users',
+        default:[0]
+    }],
     post_title: {
          type: String,
         required:[true, "Post title is required"]

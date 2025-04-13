@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getAllPosts, getSinglePost, editPost, deletePost, createPost,setImageForUser } = require('../controllers/postsControllers');
+const { getAllPosts, getSinglePost, editPost, deletePost, createPost,setImageForUser,likePost } = require('../controllers/postsControllers');
 const multer = require('multer');
 const { storage, profileStorage } = require('../config/cloudinaryConfig');
 const upload = multer({ storage });
@@ -14,6 +14,10 @@ router.get('/getSinglePost/:id', getSinglePost)
 router.post('/createPost', upload.array('images', 5), createPost);
 router.put('/editPost/:id', editPost);
 router.delete('/deletePost/:id', deletePost)
+router.post('/:id/likePost', likePost);
+
+
+//to set the profile pic for user
 router.post('/setImageForUser', uploadPost.single('image'), setImageForUser);
 
 

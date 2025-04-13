@@ -1,6 +1,7 @@
 const expressAsyncHandler = require('express-async-handler');
 const PostsModel= require('../models/postsModel');
 const UserModel = require('../models/userModel');
+const postsModel = require('../models/postsModel');
 
 const getAllPosts = expressAsyncHandler(async(req, res) => {
 
@@ -45,6 +46,7 @@ const createPost = async (req, res) => {
     
       const newPostSchema = {
           user_id,
+          upvotes:[],
           post_title,
           post_desc,
           funding_range,
@@ -126,4 +128,33 @@ const setImageForUser = expressAsyncHandler(async (req, res) => {
     );
 })
 
-module.exports = {getAllPosts,getSinglePost,editPost,deletePost,createPost,setImageForUser};
+
+const likePost = expressAsyncHandler(async (req, res) => {
+    const { id } = req.params;
+    // console.log(id);
+    // console.log(req.params);
+    const { user_id,action } = req.body;
+    console.log(user_id);
+    const post = await postsModel.findById(id);
+    if (!post) {
+        res.status(404);
+        throw new Error("Cannot like post check the id");
+    }
+    if (action === 'normal') {}
+    else {
+        if (post.upvotes.includes(user_id)) {
+            post.upvotes = post.upvotes.filter((likedUsers) => likedUsers != (user_id));
+        }
+        else {
+            post.upvotes.push(user_id);
+        }
+
+    }
+    await post.save();
+    return res.status(200).json({
+        upvotes: post.upvotes.length,
+        status: post.upvotes.includes(user_id) ? true : false
+    })
+})
+
+module.exports = {getAllPosts,getSinglePost,editPost,deletePost,createPost,setImageForUser, likePost};

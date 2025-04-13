@@ -2,10 +2,12 @@ import React from "react";
 import { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import "../../Css/Pages/InvestorRegister.css"; // Import the CSS file
+import { useAuth} from '../../Store/AuthContext'
 
 import axios from 'axios'
 
 function InvestorRegister() {
+  const { url } = useAuth();
   const { register, handleSubmit } = useForm();
   const [userData, setUserData] = useState();
 
@@ -13,7 +15,7 @@ function InvestorRegister() {
     console.log("Form Data: ", formData);
 
     try {
-      const response = await axios.post("http://localhost:5000/api/user/register", formData);
+      const response = await axios.post(`${url}/api/user/register`, formData);
       console.log("Registration successful:", response.data);
     } catch (err) {
       console.error("Error during registration: ", err);

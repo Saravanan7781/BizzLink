@@ -4,17 +4,19 @@ import { useForm } from "react-hook-form";
 import "../../Css/Pages/EntreRegister.css";
 import axios from 'axios'
 import Cookies from 'js-cookie'
+import { useAuth} from '../../Store/AuthContext';
 
 function EntreRegister() {
   const { register, handleSubmit } = useForm();
   const [entreData, setEntreData] = useState({});
   const token = Cookies.get('user');
+  const { url } = useAuth();
 
   useEffect(() => {
     const registerEntre = async () => {
       try {
         
-        const response = await axios.post('http://localhost:5000/api/user/register', {
+        const response = await axios.post(`${url}/api/user/register`, {
           ...entreData
         }
         );

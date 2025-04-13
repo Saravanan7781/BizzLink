@@ -5,6 +5,7 @@ import ShownPeople from './shownPeople'
 import _ from 'loadsh'
 import axios from 'axios'
 import Cookies from 'js-cookie'
+import { useAuth } from '../../Store/AuthContext'
 
 import img1 from '../../assets/business.jpg'
 import img2 from '../../assets/business2.jpg'
@@ -18,6 +19,7 @@ function SearchLayout() {
   const [result, setResult] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [image, setImage] = useState('');
+  const { url } = useAuth();
 
   const countRef = useRef(0);
 
@@ -29,7 +31,7 @@ function SearchLayout() {
   const searchResult = useMemo(() => _.debounce(async (searchTerm) => {
     try {
       // console.log(searchTerm);
-      const response = await axios.get(`http://localhost:5000/api/search/searchAllRecommendedUsers?name=${searchTerm}`, {
+      const response = await axios.get(`${url}/api/search/searchAllRecommendedUsers?name=${searchTerm}`, {
         headers: {
           Authorization: `Bearer: ${token}`,
         }

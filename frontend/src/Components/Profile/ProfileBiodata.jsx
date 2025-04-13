@@ -6,8 +6,9 @@ import Cookies from 'js-cookie';
 import useCounter from '../../Hooks/ProfileCounterAnimation';
 import {CloudUpload} from 'lucide-react'
 
-function ProfileBiodata({userId}) {
-    const { currentUserData } = useAuth();
+function ProfileBiodata({ userId }) {
+    const { url } = useAuth();
+    console.log(url);
     const [userData, setUserData] = useState({
         name:"",
         followers: 0,
@@ -31,7 +32,7 @@ function ProfileBiodata({userId}) {
         const getUserData = async () => {
             try {
                 const response = await axios.post(
-                    'http://localhost:5000/api/user/fetchCurrentUserData',
+                    `${url}/api/user/fetchCurrentUserData`,
                     { id: userId },
                     {
                         headers: {
@@ -61,14 +62,14 @@ function ProfileBiodata({userId}) {
         };
 
         getUserData();
-    }, [currentUserData, token]);
+    }, [token]);
 
     const profileUpload = async(e) => {
    const formData = new FormData();
   formData.append('image', e.target.files[0]);
   formData.append('user_id', userData.id);
   try {
-    const response = await axios.post('http://localhost:5000/api/posts/setImageForUser', formData, {
+    const response = await axios.post(`${url}/api/posts/setImageForUser`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
         authorization: `Bearer ${token}`,
@@ -107,7 +108,8 @@ function ProfileBiodata({userId}) {
 
             <div className="profileBiodataInfo">
                 <div className="profileBiodataUsername">
-                    <h1>{ userData.name}</h1>
+                    <h1>{userData.name ? userData.name :
+                        <i style={{fontWeight:"200"}}>Loading Username</i>}</h1>
                     <button>Follow</button>
                 </div>
 

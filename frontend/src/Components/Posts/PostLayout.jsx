@@ -1,4 +1,4 @@
-    import {React,useState,useEffect} from 'react'
+    import {React,useState,useEffect,useRef} from 'react'
 import '../../Css/Components/Posts/PostLayout.css'
 import sample from '../../assets/sample.png'
 import { BiSolidUpvote  } from "react-icons/bi";
@@ -7,25 +7,35 @@ import { AiOutlineMessage } from "react-icons/ai";
 import UseScrollAnimation from '../../Hooks/UseScrollAnimation';
 import pic from '../../assets/sample.png';
 import { MapPin} from 'lucide-react'
-
-/* temporary data structure:
-        
-        1)user dp
-        2)username
-        3)posted image
-        4)upvote count
-        5)content caption
-        6)content description
-        7)time and date posted
-*/
+import { useAuth } from '../../Store/AuthContext';
+import Cookies  from 'js-cookie';
+import axios from 'axios';
 
 function PostLayout({ data }) {
     
-    const { post_images, upvotes, post_title, post_desc, business_field, funding_range, investment_stage, business_type, location, website_link, team_size, registered_entity } = data;
+    const { _id,post_images, upvotes, post_title, post_desc, business_field, funding_range, investment_stage, business_type, location, website_link, team_size, registered_entity } = data;
     
-    // console.log(post_images[0])
-    // console.log(post_image);
+    const renderRef = useRef(false);
+    const token = Cookies.get('user');
+    const { userData, url } = useAuth();
     const [isHovered, setIsHovered] = useState(false);
+    // console.log(url);
+    const [userAndPostDetails, setUserAndPostDetails] = useState({
+        post_id: _id,
+        user_id: userData.id
+    });
+
+    const [isUpvoteClicked, setIsUpvoteClicked] = useState(false);
+
+    const [upvoteCount, setUpvoteCount] = useState(upvotes.length);
+    const [upvoteStatus, setUpvoteStatus] = useState(false);
+    
+    const upvoteClicked = () => {
+        // console.log("from " + isUpvoteClicked.status);
+        renderRef.current = true;
+        setIsUpvoteClicked(prevState => !prevState);
+    }
+
 
   const changeStateOfInnerLayout = (value) => {
     if (value) {
@@ -36,6 +46,45 @@ function PostLayout({ data }) {
     };  
     
     UseScrollAnimation(); 
+
+
+    useEffect(() => {
+        async function triggerLikeCount() {
+            // if (!renderRef.current) {
+            //     return;
+            // }
+            
+            try {
+                const upvoteCountFromBackend = await axios.post(`${url}/api/posts/${userAndPostDetails.post_id}/likePost`,
+                    {
+                        user_id: userAndPostDetails.user_id,
+                        action:!renderRef.current?"normal":"like"
+                     }
+                    , {
+                        headers:
+                        {
+                            Authorization: `Bearer ${token}`
+                        }
+                    }
+                );
+
+                if (!upvoteCountFromBackend) {
+                    console.log("Couldn't get response for upvoteCount in PostLayout.jsx");
+                    return;
+                }
+                console.log("response from backend");
+                console.log(upvoteCountFromBackend.data);
+                setUpvoteCount((prevState) => upvoteCountFromBackend.data.upvotes);
+                setUpvoteStatus((prevState)=>upvoteCountFromBackend.data.status);
+            }
+            catch (err) {
+                console.log(err.message);
+            }
+        }
+
+        triggerLikeCount();
+    }
+        , [isUpvoteClicked]); 
     
   return (
       <>
@@ -64,10 +113,20 @@ function PostLayout({ data }) {
                   
                       <div className="overallInsights">
                       <div className="upvoteContent iconsContent">
-                          <BiSolidUpvote style={{ color: "#f14545" }} size={28} />
+                        
+                                      {
+                                                upvoteStatus?
+                                              <BiSolidUpvote style={{ color: "red" }}
+                                                  onClick={ upvoteClicked}  
+                                                size={28} />
+                                              :
+                                              <BiSolidUpvote style={{ color: "white" }}
+                                                  onClick={ upvoteClicked}
+                                                  size={28} />
+                                      }
                           
                       </div>
-                      <p>{ upvotes}</p>
+                      <p>{ upvoteCount}</p>
                           
                       </div>
 

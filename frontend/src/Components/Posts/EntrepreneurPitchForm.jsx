@@ -10,10 +10,7 @@ function EntrepreneurPitchForm() {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const { userData } = useAuth(); 
-    //  useEffect(() => {
-    // console.log("Images uploaded: ");
-    // console.log(images);
-    //  }, [images])
+  const { url } = useAuth();
   
   const onSubmit = async (data) => {
   try {
@@ -38,7 +35,7 @@ function EntrepreneurPitchForm() {
       // console.log();
     });
 
-    const res = await axios.post("http://localhost:5000/api/posts/createPost", formData, {
+    const res = await axios.post(`${url}/api/posts/createPost`, formData, {
     headers: {
     "Content-Type": "multipart/form-data",
     authorization: `Bearer ${Cookies.get("user")}`,
