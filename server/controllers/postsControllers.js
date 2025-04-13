@@ -1,5 +1,6 @@
 const expressAsyncHandler = require('express-async-handler');
 const PostsModel= require('../models/postsModel');
+const UserModel = require('../models/userModel');
 
 const getAllPosts = expressAsyncHandler(async(req, res) => {
 
@@ -106,4 +107,23 @@ const deletePost = expressAsyncHandler(async(req, res) => {
     );
 });
 
-module.exports = {getAllPosts,getSinglePost,editPost,deletePost,createPost};
+const setImageForUser = expressAsyncHandler(async (req, res) => {
+    // console.log("called successfully");
+    // console.log(req.body);
+    // console.log(req.file);
+    const { user_id } = req.body;
+    const imageUrl = req.file.path;
+    // console.log("image url", imageUrl);
+    const response = await UserModel.findByIdAndUpdate(user_id, { img: imageUrl }, { new: true });
+    if (!response) {
+        res.status(404);
+        throw new Error("Cannot set image for user check the id");
+    }
+    res.status(200).json(
+        {
+            response: response.img
+        }
+    );
+})
+
+module.exports = {getAllPosts,getSinglePost,editPost,deletePost,createPost,setImageForUser};

@@ -6,19 +6,23 @@ import App from './App'
 import { AuthProvider } from './Store/AuthContext';
 import { BrowserRouter as Router,Routes,Route } from "react-router-dom";
 import Register from './Components/Signup/Register'
+import { scan } from "react-scan";
+
+scan({
+  enabled: true,
+});
 
 createRoot(document.getElementById('root')).render(
   // <StrictMode>
     <Router>
-    <AuthProvider>
     <div className="theRoot">
+    <AuthProvider>
       <Maintaner />
-      </div>
     </AuthProvider>
     <Routes>
           <Route path="/register" element={ <Register/>}  />  
-
     </Routes>
+      </div>
     </Router>
   // </StrictMode>
 )

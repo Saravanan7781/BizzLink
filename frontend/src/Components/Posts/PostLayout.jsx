@@ -23,7 +23,7 @@ function PostLayout({ data }) {
     
     const { post_images, upvotes, post_title, post_desc, business_field, funding_range, investment_stage, business_type, location, website_link, team_size, registered_entity } = data;
     
-    console.log(post_images[0])
+    // console.log(post_images[0])
     // console.log(post_image);
     const [isHovered, setIsHovered] = useState(false);
 

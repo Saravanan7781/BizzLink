@@ -19,7 +19,7 @@
 .searchSection {
     overflow: hidden;
     width: 39vw;
-    height: 100%;
+    height: 88%;
     /* background-color: rgb(155, 155, 240); */
 }
 
@@ -83,12 +83,13 @@
 }
 
 .visiblePeople {
-    /* height: 70%; */
+    height: 60vh;
+    /* border: 3px solid red; */
     width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     /* background-color: rgb(157, 145, 78); */
 
 }
@@ -97,6 +98,7 @@
     display: flex;
     /* position: relative; */
     width: 97%;
+    height: 12.5vh;
     cursor: pointer;
     /* z-index: 100; */
     margin-top: 1%;
@@ -130,7 +132,7 @@
 
 .profileDescription {
     width: 70%;
-    /* height: 20%; */
+    height: 100%;
     /* border: 1px solid red; */
     color: black;
     display: flex;
@@ -148,7 +150,7 @@
     justify-content: start;
     transform: translateX(20%);
     font-style: normal;
-    height: 35%;
+    height: 40%;
 }
 
 .profileDescriptionUserData {

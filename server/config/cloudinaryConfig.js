@@ -20,4 +20,13 @@ const storage = new CloudinaryStorage({
   },
 });
 
-module.exports = { cloudinary, storage };
+const profileStorage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: "BizzLink/UserProfile", // your cloudinary folder
+    allowed_formats: ["jpg", "jpeg", "png"],
+    transformation: [{ width: 800, height: 600, crop: "limit" }], // optional resize
+  },
+})
+
+module.exports = { cloudinary, storage, profileStorage };

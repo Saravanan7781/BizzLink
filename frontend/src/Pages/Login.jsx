@@ -5,6 +5,8 @@ import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import axios from 'axios';
 import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom';
+import loginImage from '../assets/extra1.jpg'
+
 
 function Login() {
   const navigate = useNavigate();
@@ -33,7 +35,7 @@ function Login() {
       const data = response.data;
       const { token } = data;
       Cookies.set("user", token);
-      navigate('/posts');
+      navigate('/landing');
     }
     catch (err) {
       console.log(err);
@@ -81,6 +83,9 @@ function Login() {
             </div>
 
           </div>
+        </div>
+        <div className="entryImageForLoginPage">
+          <img src={ loginImage} alt="" />
         </div>
       </div>
     </GoogleOAuthProvider>

@@ -1,8 +1,10 @@
-import {React,useState,useEffect,useMemo} from 'react'
+import {React,useState,useEffect,useMemo,useRef} from 'react'
 import '../../Css/Components/Search/SearchLayout.css'
 
 import ShownPeople from './shownPeople' 
-
+import _ from 'loadsh'
+import axios from 'axios'
+import Cookies from 'js-cookie'
 
 import img1 from '../../assets/business.jpg'
 import img2 from '../../assets/business2.jpg'
@@ -10,50 +12,51 @@ import img3 from '../../assets/business3.jpg'
 
 function SearchLayout() {
 
+  const token = Cookies.get('user');
   //letting future works behind, only names allowed
-  const names = [{
-    img: img1,
-    name: "Saravanan",
-    followers: "90",
-    upvotes: "121212"
-  }, {
-    img: img2,
-    name: "Shrishalini",
-    followers: "1",
-    upvotes: "0"
-  }, {
-    img: img3,
-    name: "Latha",
-    followers: "23",
-    upvotes: "2"
-    }];
-  
-  const [nameList, setNameList] = useState(names);
-  
-  const [searchTerm, setSearchTerm] = useState("");
-  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
+  const [nameList, setNameList] = useState();
+  const [result, setResult] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [image, setImage] = useState('');
+
+  const countRef = useRef(0);
 
   useEffect(() => {
-    const handler = setTimeout(() => {
-            
-      setDebouncedSearchTerm(searchTerm)
-    }, 300);
-          
-    return () => {
-      clearTimeout(handler)
+    countRef.current += 1;
+  });
+
+
+  const searchResult = useMemo(() => _.debounce(async (searchTerm) => {
+    try {
+      // console.log(searchTerm);
+      const response = await axios.get(`http://localhost:5000/api/search/searchAllRecommendedUsers?name=${searchTerm}`, {
+        headers: {
+          Authorization: `Bearer: ${token}`,
+        }
+      });
+      if (!response) {
+        console.log("Couldn't' get search results");
+        return;
+      }
+      setResult(response.data);
     }
+    catch (err) {
+      console.log(err.message);
+      console.log("Couldn't get search results");
+    }
+  }, 500), [searchTerm]);
+
+
+  useEffect(() => {
+    searchResult(searchTerm);
+    return () => searchResult.cancel();
   }, [searchTerm]);
+
   
-  //usememo is used to help skipping the recalculations by caching the result of previous calc
-  
-const filteredPersons = useMemo(() => {
-  return names.filter(({ name }) =>
-    name.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
-  );
-}, [debouncedSearchTerm, names]);  
 
   return (
     <div className="SearchLayout">
+      {/* <h1>{ countRef.current}</h1> */}
           <div className="col1"></div>
         <div className="searchSection">
         <div className="searchActivities">
@@ -66,20 +69,20 @@ const filteredPersons = useMemo(() => {
             </div>
 
             <div className="searchbarFromSearchLayout">
-              <input type="text" placeholder="Search for your people"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)} />
+                        <input
+            type="text"
+            placeholder="Search for your people"
+            onChange={(e) =>setTimeout(()=> setSearchTerm(e.target.value), 1000) }
+          />
+
             </div>
 
             </div>
               </div>
                <div className="visiblePeople">
-                    {filteredPersons.map((data,key)=>
-                    
+                    { result.map((data,key)=>
                     <ShownPeople key={key} data={ data} />
-                  
                   )
-            
                       }
               </div>
           </div>
