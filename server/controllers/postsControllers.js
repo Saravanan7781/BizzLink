@@ -2,6 +2,7 @@ const expressAsyncHandler = require('express-async-handler');
 const PostsModel= require('../models/postsModel');
 const UserModel = require('../models/userModel');
 const postsModel = require('../models/postsModel');
+const mongoose = require('mongoose');
 
 const getAllPosts = expressAsyncHandler(async(req, res) => {
 
@@ -129,12 +130,51 @@ const setImageForUser = expressAsyncHandler(async (req, res) => {
 })
 
 
+const userBioData = expressAsyncHandler(async (req, res) => {
+    const { user_id } = req.body;
+    // console.log(user_id);
+    // const response = await postsModel.find({ user_id });
+    // console.log(response);
+
+        const newObjectUserId = new mongoose.Types.ObjectId(user_id);
+       const stats = await postsModel.aggregate([
+        { $match: { user_id : newObjectUserId } }, // Match posts by the user
+
+        { $addFields: { upvoteCount: { $size: "$upvotes" } } }, // Add a field for count
+
+        {
+            $group: {
+                _id: "$user_id",
+                total_ideas: { $sum: 1 },
+                total_upvotes: { $sum: "$upvoteCount" }
+            }
+        }
+       ]);
+    
+
+    const userRecord = await UserModel.findById(user_id);
+    if (stats.length === 1) {
+        console.log(userRecord);
+        // console.log(stats);
+        const {total_ideas, total_upvotes} = stats[0];
+        // console.log(total_ideas, total_upvotes);
+        userRecord.ideas =  total_ideas;
+        userRecord.upvotes = total_upvotes;
+        await userRecord.save();
+    }
+    
+    return res.json({
+        userRecord
+    })
+        
+});
+
 const likePost = expressAsyncHandler(async (req, res) => {
     const { id } = req.params;
     // console.log(id);
     // console.log(req.params);
     const { user_id,action } = req.body;
-    console.log(user_id);
+    // console.log(user_id);
     const post = await postsModel.findById(id);
     if (!post) {
         res.status(404);
@@ -157,4 +197,4 @@ const likePost = expressAsyncHandler(async (req, res) => {
     })
 })
 
-module.exports = {getAllPosts,getSinglePost,editPost,deletePost,createPost,setImageForUser, likePost};
+module.exports = {getAllPosts,getSinglePost,editPost,deletePost,createPost,setImageForUser, likePost,userBioData};

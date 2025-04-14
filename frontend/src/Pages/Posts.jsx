@@ -51,7 +51,8 @@ function Posts() {
         posts.map((datum) => {
           return (
             <div className="outerLayoutForRecommendationPost" key={datum._id}>
-            <PostLayout data={datum}/>
+              <PostLayout data={datum} />
+              
             </div>
               )   
             })

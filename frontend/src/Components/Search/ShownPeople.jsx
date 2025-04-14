@@ -3,11 +3,11 @@ import { useNavigate} from 'react-router-dom'
 //react memo used to skip the re-rendering of the compo if the prop isnt changed
 
 const ShownPeople = (({ data }) => {
+  console.log(data);
   const { img, username, followers, upvotes, _id } = data;
   const navigate = useNavigate();  
-
+  // console.log("data");
   const handleClick = () => {
-    console.log("handleclick used")
     navigate(`/profile/${_id}`);
   }
 
