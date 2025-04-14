@@ -8,7 +8,7 @@ const searchAllRecommendedUsers = asyncHandler(async (req, res) => {
     const response = await userModel.find({
         username: {
         $regex: regex,
-    }}).select('username followers upvotes');
+    }}).select('username followers upvotes img');
     if (!response) {
         res.status(404);
         res.json()({ message: "No users found" });

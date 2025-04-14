@@ -8,7 +8,7 @@ import {CloudUpload} from 'lucide-react'
 
 function ProfileBiodata({ userId }) {
     const { url } = useAuth();
-    console.log(url);
+    // console.log(url);
     const [userData, setUserData] = useState({
         name:"",
         followers: 0,
@@ -32,8 +32,8 @@ function ProfileBiodata({ userId }) {
         const getUserData = async () => {
             try {
                 const response = await axios.post(
-                    `${url}/api/user/fetchCurrentUserData`,
-                    { id: userId },
+                    `${url}/api/posts/fetchUserBioData`,
+                    { user_id: userId },
                     {
                         headers: {
                             authorization: `Bearer ${token}`,
@@ -46,15 +46,16 @@ function ProfileBiodata({ userId }) {
                     return;
                 }
 
-                // console.log(response.data);
+                console.log("respose from new api");
+                console.log(response.data);
 
                 setUserData({
-                    id: response.data._id,
-                    name: response.data.username,
-                    followers: response.data.followers,
-                    upvotes: response.data.upvotes,
-                    ideas: response.data.ideas,
-                    img:response.data.img,
+                    id: response.data.userRecord._id,
+                    name: response.data.userRecord.username,
+                    followers: response.data.userRecord.followers,
+                    upvotes: response.data.userRecord.upvotes,
+                    ideas: response.data.userRecord.ideas,
+                    img:response.data.userRecord.img,
                 });
             } catch (error) {
                 console.error("Error fetching user data", error);

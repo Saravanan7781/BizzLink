@@ -10,14 +10,16 @@ import Register from './Components/Signup/Register'
 import EntrepreneurPitchForm from './Components/Posts/EntrepreneurPitchForm';
 import Navbar from './Components/Navbar';
 import LandingPage from './Components/LandingPage';
-
+import EntrePostCreation from './Components/EntrePostCreation';
 
 function Maintaner() {
   const { userData } = useAuth();
   return (
       <>
-      { userData && <Navbar/>}
-    <Routes>
+      {userData && <Navbar />}
+      <EntrePostCreation />
+      <Routes>
+         
             <Route path='/landing' element={ <LandingPage />}></Route>
             <Route path="/posts" element={<App />} />
             <Route path="/search" element={<Search />} />

@@ -21,14 +21,13 @@ function Navbar() {
         <ul className="listOfNavs">
           <Link to="/posts">Home</Link>
           <Link to="/search">Search</Link>
-          <Link to="/pitch">Pitch</Link>
           <Link to="/about">About</Link>
-          <Link onClick={ handleLogout} to="/login">Logout</Link>
          
+         {userData && <Link to={`/profile/${userData.id}`} >Profile</Link>}
         </ul>
       </div>
       <div className="secondPartNav secondPartOfNavbar" >
-        {userData && <Link to={`/profile/${userData.id}`} >Profile</Link>}
+           <Link onClick={ handleLogout} to="/login">Logout</Link>
       </div>
     </div>
   )
