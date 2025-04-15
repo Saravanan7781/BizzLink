@@ -17,7 +17,7 @@ function Maintaner() {
   return (
       <>
       {userData && <Navbar />}
-      <EntrePostCreation />
+      {userData && <EntrePostCreation />}
       <Routes>
          
             <Route path='/landing' element={ <LandingPage />}></Route>

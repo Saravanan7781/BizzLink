@@ -6,7 +6,9 @@ const router = express.Router();
 router.post("/register", register);
 router.post("/google/login", googleLogin);
 router.post("/login", login);
-router.post('/fetchCurrentUserData', fetchUser);
+
+//replaced by fetchUserData in posts controller....
+// router.post('/fetchCurrentUserData', fetchUser);
 
 router.get("/current",verifyTokenHandler, current);
 

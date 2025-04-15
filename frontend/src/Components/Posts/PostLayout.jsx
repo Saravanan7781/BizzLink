@@ -11,7 +11,7 @@ import { useAuth } from '../../Store/AuthContext';
 import Cookies  from 'js-cookie';
 import axios from 'axios';
 
-function PostLayout({ data }) {
+function PostLayout({ data, setIsUpvotedFromPostLayout }) {
     
     const { _id,post_images, upvotes, post_title, post_desc, business_field, funding_range, investment_stage, business_type, location, website_link, team_size, registered_entity } = data;
     
@@ -36,8 +36,9 @@ function PostLayout({ data }) {
         setIsUpvoteClicked(prevState => !prevState);
     }
 
-
-  const changeStateOfInnerLayout = (value) => {
+    
+    
+    const changeStateOfInnerLayout = (value) => {
     if (value) {
         setIsHovered(true);
     } else {
@@ -47,7 +48,10 @@ function PostLayout({ data }) {
     
     UseScrollAnimation(); 
 
-
+    useEffect(() => {
+        (setIsUpvotedFromPostLayout) ? setIsUpvotedFromPostLayout(prevState => !prevState) : ''; 
+    },[isUpvoteClicked]);
+    
     useEffect(() => {
         async function triggerLikeCount() {
             // if (!renderRef.current) {
@@ -72,7 +76,7 @@ function PostLayout({ data }) {
                     console.log("Couldn't get response for upvoteCount in PostLayout.jsx");
                     return;
                 }
-                console.log("response from backend");
+                console.log("after liked the button");
                 console.log(upvoteCountFromBackend.data);
                 setUpvoteCount((prevState) => upvoteCountFromBackend.data.upvotes);
                 setUpvoteStatus((prevState)=>upvoteCountFromBackend.data.status);

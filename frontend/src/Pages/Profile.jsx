@@ -11,9 +11,15 @@ import { useParams } from 'react-router-dom';
 function Profile() { 
   const { userData } = useAuth();
   const [userPosts, setUserPosts] = useState([]);
+  //to lift the state up to cause re-render....
+  const [isUpvotedFromPostLayout,setIsUpvotedFromPostLayout] = useState(false);
   
-    const {userId} = useParams();
-    // console.log(userId)
+  const { userId } = useParams();
+  
+  useEffect(() => {
+    console.log("profile.jsx");
+  }, [isUpvotedFromPostLayout]);
+ 
   useEffect(() => {
     const getUserPosts = async () => {
       const token = Cookies.get('user');
@@ -52,11 +58,11 @@ function Profile() {
   return (
     <div className="dupProfileContainerLayer">
         <div className= {`profileContainerLayer ${loadedProfilePage ? 'showProfileContainerLayer':''}`}>
-        <ProfileBiodata   userId={ userId} />
+        <ProfileBiodata userId={userId} isUpvotedFromPostLayout={ isUpvotedFromPostLayout} />
           
         { 
           userPosts.map((data,index) => {
-            return <ProfilePosts key={index} postData={data } />
+            return <ProfilePosts key={index} postData={data} setIsUpvotedFromPostLayout={setIsUpvotedFromPostLayout} />
           })
           }
         
