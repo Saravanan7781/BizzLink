@@ -6,9 +6,8 @@ import Cookies from 'js-cookie';
 import useCounter from '../../Hooks/ProfileCounterAnimation';
 import {CloudUpload} from 'lucide-react'
 
-function ProfileBiodata({ userId }) {
+function ProfileBiodata({ userId, isUpvotedFromPostLayout }) {
     const { url } = useAuth();
-    // console.log(url);
     const [userData, setUserData] = useState({
         name:"",
         followers: 0,
@@ -18,17 +17,27 @@ function ProfileBiodata({ userId }) {
     });  
     const token = Cookies.get('user');
 
+    useEffect(() => {
+        console.log("biodata");
+    }, [isUpvotedFromPostLayout]);
+    
     // 👉 Move counter logic to top level
-    const animatedUpvotes = useCounter(userData.upvotes);
-    const animatedFollowers = useCounter(userData.followers);
-    const animatedIdeas = useCounter(userData.ideas);
+    
+    // const animatedUpvotes = ;
+    // const animatedFollowers = ;
+    // const animatedIdeas = ;
 
+
+    // useEffect(() => {
+    //     console.log(userData)
+    // }, [userData]);
 
     useEffect(() => {
-        console.log(userData)
-    }, [userData]);
 
-    useEffect(() => {
+        setTimeout(() => {
+            getUserData();
+        }, 2000);
+
         const getUserData = async () => {
             try {
                 const response = await axios.post(
@@ -61,9 +70,9 @@ function ProfileBiodata({ userId }) {
                 console.error("Error fetching user data", error);
             }
         };
-
+        console.log("getsuser data from biodata")
         getUserData();
-    }, [token]);
+    }, [isUpvotedFromPostLayout,token]);
 
     const profileUpload = async(e) => {
    const formData = new FormData();
@@ -81,7 +90,7 @@ function ProfileBiodata({ userId }) {
       return;
     }
       setUserData((prev) => ({ ...prev, img:response.data.response }));
-    console.log("response data " + response.data);
+    // console.log("response data " + response.data);
     }
   catch (err) {
     console.log(err.message);
@@ -117,15 +126,15 @@ function ProfileBiodata({ userId }) {
                 <div className="profileBiodataProfileCounts">
                     <div className="profileBiodataProfileCountsInfo">
                         <h1>Upvotes</h1>
-                        <h1>{Math.round(animatedUpvotes)}</h1>
+                        <h1>{Math.round(useCounter(userData.upvotes))}</h1>
                     </div>
                     <div className="profileBiodataProfileCountsInfo">
                         <h1>Followers</h1>
-                        <h1>{Math.round(animatedFollowers)}</h1>
+                        <h1>{Math.round(useCounter(userData.followers))}</h1>
                     </div>
                     <div className="profileBiodataProfileCountsInfo">
                         <h1>Ideas</h1>
-                        <h1>{Math.round(animatedIdeas)}</h1>
+                        <h1>{Math.round(useCounter(userData.ideas))}</h1>
                     </div>
                 </div>
             </div>

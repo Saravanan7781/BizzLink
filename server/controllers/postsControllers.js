@@ -132,10 +132,6 @@ const setImageForUser = expressAsyncHandler(async (req, res) => {
 
 const userBioData = expressAsyncHandler(async (req, res) => {
     const { user_id } = req.body;
-    // console.log(user_id);
-    // const response = await postsModel.find({ user_id });
-    // console.log(response);
-
         const newObjectUserId = new mongoose.Types.ObjectId(user_id);
        const stats = await postsModel.aggregate([
         { $match: { user_id : newObjectUserId } }, // Match posts by the user
@@ -154,7 +150,7 @@ const userBioData = expressAsyncHandler(async (req, res) => {
 
     const userRecord = await UserModel.findById(user_id);
     if (stats.length === 1) {
-        console.log(userRecord);
+        // console.log(userRecord);
         // console.log(stats);
         const {total_ideas, total_upvotes} = stats[0];
         // console.log(total_ideas, total_upvotes);
