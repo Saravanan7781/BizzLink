@@ -8,7 +8,8 @@ const AuthContext = createContext();
 export  const AuthProvider = ({ children }) => {
     const [userData, setUserData] = useState(null);
     const navigate = useNavigate();
-    const url = "http://localhost:5000";
+    const url = "https://bizzlinkbackendservice.onrender.com";
+    // const url = "http://localhost:5000";
     
     async function verifyUser() {
             try {

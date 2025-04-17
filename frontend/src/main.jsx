@@ -6,11 +6,11 @@ import App from './App'
 import { AuthProvider } from './Store/AuthContext';
 import { BrowserRouter as Router,Routes,Route } from "react-router-dom";
 import Register from './Components/Signup/Register'
-import { scan } from "react-scan";
+// import { scan } from "react-scan";
 
-scan({
-  enabled: true,
-});
+// scan({
+//   enabled: true,
+// });
 
 createRoot(document.getElementById('root')).render(
   // <StrictMode>
